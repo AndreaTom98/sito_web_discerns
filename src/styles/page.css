@@ -1,0 +1,1230 @@
+/*
+ * Stili della home Discerns.
+ *
+ * Tutti i colori, i font, i raggi e le ombre vengono dai token di Nocturne
+ * (src/styles/nocturne.css). Qui ci sono solo layout, scala tipografica della
+ * pagina e movimento — nessun hex, nessun font hard-coded.
+ */
+
+/* ── Base pagina ─────────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 28px;
+  text-wrap: pretty;
+  color: var(--color-text);
+  background:
+    radial-gradient(
+      1200px 720px at 82% -160px,
+      color-mix(in srgb, var(--color-accent-900) 75%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(1100px 800px at -10% 100%, color-mix(in srgb, black 30%, transparent), transparent 55%),
+    var(--color-bg);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Salta al contenuto — visibile solo da tastiera. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+}
+
+/* ── Utility di layout ───────────────────────────────────────────────── */
+
+.wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding-inline: clamp(20px, 5vw, 40px);
+}
+
+/* Filetto che sfuma agli estremi — firma del sistema Nocturne. */
+.rule {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-divider) 48px,
+    var(--color-divider) calc(100% - 48px),
+    transparent
+  );
+}
+
+/* Variante appoggiata sul bordo superiore di un blocco posizionato. */
+.rule-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-neutral-700) 48px,
+    var(--color-neutral-700) calc(100% - 48px),
+    transparent
+  );
+}
+
+.dim {
+  color: color-mix(in srgb, var(--color-text) 80%, transparent);
+}
+
+.kicker {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.strong {
+  font-family: var(--font-heading);
+  font-weight: 500;
+}
+
+/* Link testuale in accento: usa lo step profondo della rampa, perché il
+   colore accento puro non ha contrasto sufficiente a misura di paragrafo. */
+.link-accent {
+  display: inline-block;
+  font-size: 15px;
+  color: var(--color-accent-300);
+  padding: 8px 0;
+}
+
+.link-accent:hover {
+  color: var(--color-accent-200);
+}
+
+.link-accent:active {
+  color: var(--color-accent-400);
+}
+
+/* Evidenziazione dei passaggi di intervista diventati post. */
+.hl {
+  color: var(--color-text);
+  padding: 1px 3px;
+  border-radius: 3px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  background: linear-gradient(
+      color-mix(in srgb, var(--color-accent) 32%, transparent),
+      color-mix(in srgb, var(--color-accent) 32%, transparent)
+    )
+    no-repeat 0 0 / 100% 100%;
+}
+
+/* CTA principale: stessa misura e stessa dicitura in tutte le occorrenze. */
+.cta {
+  min-height: 48px;
+  padding: 0 22px;
+  font-size: 16px;
+}
+
+/* Primario pieno — scelta deliberata (il contorno non staccava abbastanza):
+   accento come fondo, testo sul ground scuro. Regge anche sulla fascia viola. */
+.btn-solid {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.btn-solid:hover {
+  background: var(--color-accent-400);
+  border-color: var(--color-accent-400);
+}
+
+.btn-solid:active {
+  background: var(--color-accent-600);
+  border-color: var(--color-accent-600);
+}
+
+/* ── Header ──────────────────────────────────────────────────────────── */
+
+.site-nav {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 17px clamp(20px, 5vw, 40px);
+}
+
+.site-nav .nav-brand {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+@media (max-width: 560px) {
+  .site-nav {
+    flex-wrap: wrap;
+    gap: 8px var(--space-4);
+  }
+
+  .site-nav .nav-brand {
+    margin-right: 0;
+    flex: 1 0 100%;
+  }
+}
+
+/* ── 1. Apertura ─────────────────────────────────────────────────────── */
+
+.hero {
+  padding-block: clamp(56px, 8vw, 112px) clamp(48px, 6vw, 84px);
+}
+
+.hero-inner {
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-eyebrow {
+  margin: 0 0 20px;
+  font-size: 13px;
+  line-height: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.hero-title {
+  margin: 0;
+  margin-left: -0.06em; /* allinea otticamente la maiuscola al bordo sinistro */
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(38px, 5.4vw, 68px);
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+}
+
+.hero-lead {
+  margin: 28px 0 0;
+  max-width: 58ch;
+  font-size: 19px;
+  line-height: 30px;
+}
+
+.hero-claim {
+  margin: 14px 0 0;
+  font-size: 19px;
+  line-height: 30px;
+  font-family: var(--font-heading);
+  font-weight: 500;
+}
+
+.hero .cta {
+  margin-top: 28px;
+}
+
+.hero-terms {
+  margin: 14px 0 0;
+  font-size: 15px;
+  color: color-mix(in srgb, var(--color-text) 64%, transparent);
+}
+
+/* ── 2. Problema ─────────────────────────────────────────────────────── */
+
+.problem {
+  padding: clamp(48px, 6vw, 84px) 0;
+}
+
+.problem-intro {
+  margin: 0;
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--color-text) 72%, transparent);
+}
+
+/* L'affermazione dominante del blocco: più grande di ogni altro titolo di
+   sezione, sotto solo al claim del hero. */
+.problem-statement {
+  margin: 10px 0 0;
+  max-width: 21ch;
+  text-wrap: balance;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(30px, 4.2vw, 50px);
+  line-height: 1.1;
+  letter-spacing: -0.016em;
+}
+
+/* Il lavoro concreto come sequenza tipografica, non quattro card. */
+.problem-seq {
+  margin: 30px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(16px, 1.9vw, 19px);
+  line-height: 1.4;
+}
+
+.seq-arrow {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.problem-coda {
+  margin: 12px 0 0;
+  font-size: 15px;
+  line-height: 24px;
+  color: color-mix(in srgb, var(--color-text) 62%, transparent);
+}
+
+.problem-copy {
+  margin-top: clamp(28px, 3.5vw, 44px);
+  max-width: 58ch;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.problem-copy p {
+  margin: 0;
+}
+
+/* ── 3. Prova e fondatore ────────────────────────────────────────────── */
+
+.section {
+  padding-block: clamp(48px, 6vw, 84px);
+}
+
+.section-head {
+  max-width: 680px;
+}
+
+.section-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.014em;
+}
+
+.section-title-sm {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(26px, 3vw, 34px);
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+}
+
+.section-sub {
+  margin: 14px 0 0;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 10fr) auto minmax(0, 11fr);
+  gap: 28px;
+  align-items: start;
+  margin-top: 36px;
+}
+
+.transcript {
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-md);
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: 16px;
+  line-height: 27px;
+}
+
+.transcript p {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.transcript p.is-interviewer {
+  color: color-mix(in srgb, var(--color-text) 64%, transparent);
+}
+
+.transcript .speaker {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.proof-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  align-self: center;
+  max-width: 150px;
+  text-align: center;
+}
+
+.proof-arrow p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 20px;
+  color: color-mix(in srgb, var(--color-text) 64%, transparent);
+}
+
+.arrow-h {
+  display: block;
+}
+
+.arrow-v {
+  display: none;
+}
+
+.proof-post {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.proof-post img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+/* Chiusura della dimostrazione: una riga-firma, agganciata al blocco sopra. */
+.founder {
+  margin-top: 36px;
+  padding-top: 28px;
+  position: relative;
+}
+
+.founder-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 22px;
+}
+
+.founder-figure {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.founder-photo {
+  display: block;
+  width: 76px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+/* Spazio compatto in attesa della foto reale: monogramma, non un ritratto. */
+.founder-monogram {
+  flex: 0 0 auto;
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--color-accent-300);
+}
+
+.founder-info {
+  flex: 1 1 340px;
+  max-width: 62ch;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.founder-name {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 26px;
+}
+
+.founder-role {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: color-mix(in srgb, var(--color-text) 62%, transparent);
+}
+
+.founder-sentence {
+  margin: 0;
+  font-size: 15px;
+  line-height: 24px;
+  color: color-mix(in srgb, var(--color-text) 76%, transparent);
+}
+
+.founder-link {
+  align-self: flex-start;
+  padding: 6px 0 0;
+}
+
+/* ── 4. Come funziona ────────────────────────────────────────────────── */
+
+.how {
+  padding-block: clamp(40px, 5vw, 72px);
+}
+
+.how h2 {
+  margin: 0 0 8px;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.014em;
+}
+
+.steps {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+}
+
+.step-row {
+  display: grid;
+  grid-template-columns: minmax(40px, 64px) minmax(0, 360px) minmax(0, 1fr);
+  gap: 14px clamp(20px, 4vw, 64px);
+  align-items: baseline;
+  padding: 28px 0;
+  position: relative;
+}
+
+.step-num {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--color-accent);
+  font-feature-settings: 'tnum' 1;
+}
+
+.step-row h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+.step-row p {
+  margin: 0;
+  max-width: 52ch;
+  font-size: 16px;
+  color: color-mix(in srgb, var(--color-text) 78%, transparent);
+}
+
+/* ── 5. Cervello digitale — un extra incluso, in un riquadro ─────────── */
+
+.brain-wrap {
+  padding-block: clamp(16px, 2.5vw, 32px);
+}
+
+/* L'unico riquadro accentato della pagina: fondo tinto dalla rampa scura
+   dell'accento e bordo appena marcato. Nient'altro sopra. */
+.brain-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px clamp(28px, 4.5vw, 72px);
+  padding: clamp(26px, 4vw, 44px);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-accent-800);
+  background: color-mix(in srgb, var(--color-accent-900) 40%, var(--color-surface));
+}
+
+.brain-main {
+  flex: 1 1 340px;
+  max-width: 58ch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.brain-main p {
+  margin: 0;
+}
+
+.brain-tag {
+  margin-bottom: 4px;
+}
+
+.brain-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(23px, 2.6vw, 29px);
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+}
+
+/* Raccogli → riusa: la colonna che rende concreta l'idea. */
+.brain-demo {
+  flex: 1 1 260px;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.brain-notes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-self: stretch;
+}
+
+.brain-notes li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 15px;
+  line-height: 22px;
+  background: linear-gradient(
+      to right,
+      transparent,
+      color-mix(in srgb, var(--color-text) 10%, transparent) 24px calc(100% - 24px),
+      transparent
+    )
+    no-repeat bottom / 100% 1px;
+}
+
+.note-dash {
+  flex: 0 0 18px;
+  height: 1px;
+  background: var(--color-accent-300);
+}
+
+.brain-flow {
+  display: block;
+  margin: 2px 0 2px 8px;
+}
+
+.brain-quote {
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 14px 16px;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+/* ── 6. Alternative e offerta ────────────────────────────────────────── */
+
+.offer-intro {
+  padding-block: clamp(40px, 5vw, 72px) clamp(28px, 4vw, 48px);
+}
+
+/* Confronto: due colonne di righe brevi, filetto verticale al centro. */
+.compare {
+  position: relative;
+  margin-top: 30px;
+  max-width: 880px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0 clamp(36px, 6vw, 88px);
+}
+
+.compare::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-divider) 24px,
+    var(--color-divider) calc(100% - 24px),
+    transparent
+  );
+}
+
+.compare-label {
+  margin: 0 0 4px;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.compare-solo .compare-label {
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+
+.compare-us .compare-label {
+  color: var(--color-accent);
+}
+
+.compare-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.compare-col li {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 16px;
+  line-height: 24px;
+  background: linear-gradient(
+      to right,
+      transparent,
+      color-mix(in srgb, var(--color-text) 8%, transparent) 24px calc(100% - 24px),
+      transparent
+    )
+    no-repeat bottom / 100% 1px;
+}
+
+.compare-dash {
+  flex: 0 0 18px;
+  height: 1px;
+}
+
+/* Gerarchia: il "da solo" arretra, il "con Discerns" tiene il pieno. */
+.compare-solo li {
+  color: color-mix(in srgb, var(--color-text) 62%, transparent);
+}
+
+.compare-solo .compare-dash {
+  background: var(--color-neutral-600);
+}
+
+.compare-us .compare-dash {
+  background: var(--color-accent-300);
+}
+
+.compare-note {
+  margin: 26px 0 0;
+  max-width: 58ch;
+  font-size: 16px;
+  line-height: 26px;
+  color: color-mix(in srgb, var(--color-text) 76%, transparent);
+}
+
+/* L'unica fascia a fondo saturo della pagina: presenza a scala di pagina. */
+.offer-band {
+  background:
+    radial-gradient(
+      900px 420px at 85% -40%,
+      color-mix(in srgb, var(--color-section-glow) 70%, transparent),
+      transparent 64%
+    ),
+    var(--color-section);
+}
+
+.offer-band-inner {
+  padding-block: clamp(44px, 5.5vw, 76px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px clamp(28px, 5vw, 72px);
+}
+
+.offer-included {
+  flex: 6 1 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.offer-included h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(24px, 2.8vw, 32px);
+  line-height: 1.18;
+  letter-spacing: -0.012em;
+}
+
+.offer-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.offer-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+/* Trattino d'accento: marca corta, quindi piena — non sfuma. */
+.offer-dash {
+  flex: 0 0 22px;
+  height: 1px;
+  background: var(--color-accent-300);
+  margin-top: 13px;
+}
+
+.offer-divider {
+  flex: 0 0 1px;
+  align-self: stretch;
+  background: color-mix(in srgb, var(--color-text) 20%, transparent);
+}
+
+.offer-price-col {
+  flex: 4 1 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.offer-price {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(38px, 4.2vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-feature-settings: 'tnum' 1;
+}
+
+.offer-price .per {
+  font-family: var(--font-body);
+  font-size: 0.36em;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-left: 8px;
+}
+
+.offer-first-month {
+  margin: 0;
+  font-size: 18px;
+  color: var(--color-accent-300);
+  font-family: var(--font-heading);
+  font-weight: 500;
+}
+
+.offer-note {
+  margin: 0;
+  font-size: 15px;
+  color: color-mix(in srgb, var(--color-text) 78%, transparent);
+}
+
+.offer-note:first-of-type {
+  margin-top: 6px;
+}
+
+.offer-price-col .cta {
+  margin-top: 6px;
+}
+
+/* Disponibilità reale, detta una volta e sottovoce: niente urgenza. */
+.offer-availability {
+  margin: 4px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--color-accent-200);
+}
+
+.offer-availability .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent-300);
+}
+
+/* ── 7. FAQ e contatto ───────────────────────────────────────────────── */
+
+.faq {
+  padding-block: clamp(48px, 6vw, 84px) 0;
+}
+
+.faq-inner {
+  max-width: 760px;
+}
+
+.faq-inner h2 {
+  margin: 0 0 20px;
+}
+
+.faq-item {
+  position: relative;
+}
+
+.faq-item .rule-top {
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-divider) 48px,
+    var(--color-divider) calc(100% - 48px),
+    transparent
+  );
+}
+
+/* Accordion su <details>: apre e chiude anche senza JavaScript.
+   Il JS aggiunge solo il comportamento "uno alla volta". */
+.faq-q {
+  list-style: none;
+  width: 100%;
+  min-height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 26px;
+  color: var(--color-text);
+}
+
+.faq-q::-webkit-details-marker {
+  display: none;
+}
+
+.faq-q:hover {
+  color: var(--color-accent);
+}
+
+.faq-q:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.faq-icon {
+  flex: 0 0 24px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+.faq-icon::after {
+  content: '+';
+}
+
+.faq-details[open] .faq-icon::after {
+  content: '\2212'; /* segno meno, non trattino */
+}
+
+.faq-panel {
+  padding: 0 40px 22px 0;
+  max-width: 58ch;
+  font-size: 16px;
+  color: color-mix(in srgb, var(--color-text) 80%, transparent);
+}
+
+.contact {
+  max-width: 680px;
+  margin-top: clamp(48px, 6vw, 84px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.contact p {
+  margin: 0;
+}
+
+.contact .cta {
+  margin-top: 8px;
+}
+
+.contact-terms {
+  margin-top: 6px !important;
+  font-size: 15px;
+  color: color-mix(in srgb, var(--color-text) 64%, transparent);
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────── */
+
+.site-footer {
+  padding-block: clamp(40px, 5vw, 64px) 40px;
+  font-size: 13px;
+  line-height: 24px;
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+
+.site-footer .rule {
+  margin-bottom: 24px;
+}
+
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px 32px;
+}
+
+.footer-brand {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-text);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.footer-links a {
+  color: var(--color-accent-300);
+}
+
+.footer-links a:hover {
+  color: var(--color-accent-200);
+}
+
+/* ── Adattamento ─────────────────────────────────────────────────────── */
+
+@media (max-width: 720px) {
+  .compare {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    max-width: none;
+  }
+
+  .compare::before {
+    display: none;
+  }
+
+  .compare-col li {
+    min-height: 0;
+    padding: 12px 0;
+    align-items: flex-start;
+  }
+
+  .compare-dash {
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 880px) {
+  .step-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Il filetto verticale ha senso solo con le due colonne affiancate. */
+  .offer-divider {
+    display: none;
+  }
+
+  .proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-grid .arrow-h {
+    display: none;
+  }
+
+  .proof-grid .arrow-v {
+    display: block;
+  }
+}
+
+/* ── Movimento ───────────────────────────────────────────────────────────
+   Le animazioni si attivano solo quando il JS aggiunge data-anim al body e
+   il sistema non chiede movimento ridotto. Senza JS il contenuto è
+   interamente visibile: nessun blocco resta a opacità 0. */
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-anim] .hero-in {
+    animation: hero-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  [data-anim] .hero-in:nth-child(2) {
+    animation-delay: 0.08s;
+  }
+  [data-anim] .hero-in:nth-child(3) {
+    animation-delay: 0.16s;
+  }
+  [data-anim] .hero-in:nth-child(4) {
+    animation-delay: 0.24s;
+  }
+  [data-anim] .hero-in:nth-child(5) {
+    animation-delay: 0.32s;
+  }
+  [data-anim] .hero-in:nth-child(6) {
+    animation-delay: 0.38s;
+  }
+
+  [data-anim] .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  [data-anim] .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-anim] .hl {
+    background-size: 0% 100%;
+    transition: background-size 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  [data-anim] .reveal.in .hl {
+    background-size: 100% 100%;
+    transition-delay: 0.5s;
+  }
+  [data-anim] .reveal.in .hl:nth-of-type(2) {
+    transition-delay: 0.9s;
+  }
+
+  [data-anim] .arrow-path {
+    stroke-dasharray: 80;
+    stroke-dashoffset: 80;
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.3s;
+  }
+  [data-anim] .reveal.in .arrow-path {
+    stroke-dashoffset: 0;
+  }
+
+  [data-anim] .step-row {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  [data-anim] .step-row.in {
+    opacity: 1;
+    transform: none;
+  }
+  [data-anim] .step-row.in:nth-child(2) {
+    transition-delay: 0.12s;
+  }
+  [data-anim] .step-row.in:nth-child(3) {
+    transition-delay: 0.24s;
+  }
+
+  [data-anim] .faq-details[open] .faq-panel {
+    animation: hero-in 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  [data-anim] .btn-solid {
+    transition:
+      background 0.2s,
+      box-shadow 0.3s;
+  }
+  [data-anim] .btn-solid:hover {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 18%, transparent);
+  }
+
+  /* La sequenza del problema entra un passo alla volta. */
+  [data-anim] .problem-seq > * {
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  [data-anim] .reveal.in .problem-seq > * {
+    opacity: 1;
+    transform: none;
+  }
+  [data-anim] .reveal.in .problem-seq > :nth-child(2) {
+    transition-delay: 0.1s;
+  }
+  [data-anim] .reveal.in .problem-seq > :nth-child(3) {
+    transition-delay: 0.2s;
+  }
+  [data-anim] .reveal.in .problem-seq > :nth-child(4) {
+    transition-delay: 0.3s;
+  }
+  [data-anim] .reveal.in .problem-seq > :nth-child(5) {
+    transition-delay: 0.4s;
+  }
+  [data-anim] .reveal.in .problem-seq > :nth-child(6) {
+    transition-delay: 0.5s;
+  }
+  [data-anim] .reveal.in .problem-seq > :nth-child(7) {
+    transition-delay: 0.6s;
+  }
+
+  /* Gli appunti del cervello digitale si accumulano uno dopo l'altro. */
+  [data-anim] .brain-notes li {
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  [data-anim] .reveal.in .brain-notes li {
+    opacity: 1;
+    transform: none;
+  }
+  [data-anim] .reveal.in .brain-notes li:nth-child(2) {
+    transition-delay: 0.18s;
+  }
+  [data-anim] .reveal.in .brain-notes li:nth-child(3) {
+    transition-delay: 0.36s;
+  }
+}

@@ -1,0 +1,64 @@
+---
+import { meta } from '~/config/site';
+import '~/styles/nocturne.css';
+import '~/styles/page.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = meta.title, description = meta.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang={meta.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={canonical} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={meta.locale} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="theme-color" content="#161826" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Vai al contenuto</a>
+    <slot />
+
+    <script>
+      // Le animazioni esistono solo se il browser sa osservare l'intersezione.
+      // Senza questo attributo il CSS lascia tutto visibile, quindi un
+      // fallimento qui degrada a pagina statica, non a pagina vuota.
+      if ('IntersectionObserver' in window) {
+        document.body.setAttribute('data-anim', '');
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('in');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+        );
+
+        document
+          .querySelectorAll('.reveal:not(.in), .step-row:not(.in)')
+          .forEach((el) => io.observe(el));
+      }
+    </script>
+  </body>
+</html>

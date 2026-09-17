@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/nocturne-a1c2cabb-7b90-4d11-9be0-cfe13ef4f1ad/styles.css">
+  <script src="_ds/nocturne-a1c2cabb-7b90-4d11-9be0-cfe13ef4f1ad/_ds_bundle.js"></script>
+  <script src="./image-slot.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0; font-size: 17px; line-height: 28px; text-wrap: pretty;
+      background:
+        radial-gradient(1200px 720px at 82% -160px, color-mix(in srgb, var(--color-accent-900) 75%, transparent), transparent 60%),
+        radial-gradient(1100px 800px at -10% 100%, color-mix(in srgb, black 30%, transparent), transparent 55%),
+        var(--color-bg);
+      color: var(--color-text);
+    }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+    @media (max-width: 880px) {
+      .step-row { grid-template-columns: 1fr !important; gap: 10px !important; }
+      .proof-grid { grid-template-columns: 1fr !important; }
+      .proof-grid .arrow-h { display: none !important; }
+      .proof-grid .arrow-v { display: block !important; }
+    }
+    .hl { color: var(--color-text); padding: 1px 3px; border-radius: 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+      background: linear-gradient(color-mix(in srgb, var(--color-accent) 32%, transparent), color-mix(in srgb, var(--color-accent) 32%, transparent)) no-repeat 0 0 / 100% 100%; }
+    /* Animazioni: attive solo con JS (data-anim) e senza reduced-motion; il contenuto resta visibile in ogni caso. */
+    @keyframes hero-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: no-preference) {
+      [data-anim] .hero-in { animation: hero-in 0.7s cubic-bezier(.2,.7,.2,1) both; }
+      [data-anim] .hero-in:nth-child(2) { animation-delay: 0.08s; }
+      [data-anim] .hero-in:nth-child(3) { animation-delay: 0.16s; }
+      [data-anim] .hero-in:nth-child(4) { animation-delay: 0.24s; }
+      [data-anim] .hero-in:nth-child(5) { animation-delay: 0.32s; }
+      [data-anim] .hero-in:nth-child(6) { animation-delay: 0.38s; }
+      [data-anim] .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s cubic-bezier(.2,.7,.2,1), transform 0.7s cubic-bezier(.2,.7,.2,1); }
+      [data-anim] .reveal.in { opacity: 1; transform: none; }
+      [data-anim] .hl { background-size: 0% 100%; transition: background-size 0.9s cubic-bezier(.2,.7,.2,1); }
+      [data-anim] .reveal.in .hl { background-size: 100% 100%; transition-delay: 0.5s; }
+      [data-anim] .reveal.in .hl:nth-of-type(2) { transition-delay: 0.9s; }
+      [data-anim] .arrow-path { stroke-dasharray: 80; stroke-dashoffset: 80; transition: stroke-dashoffset 0.8s cubic-bezier(.2,.7,.2,1) 0.3s; }
+      [data-anim] .reveal.in .arrow-path { stroke-dashoffset: 0; }
+      [data-anim] .step-row { opacity: 0; transform: translateY(12px); transition: opacity 0.6s cubic-bezier(.2,.7,.2,1), transform 0.6s cubic-bezier(.2,.7,.2,1); }
+      [data-anim] .step-row.in { opacity: 1; transform: none; }
+      [data-anim] .step-row.in:nth-child(2) { transition-delay: 0.12s; }
+      [data-anim] .step-row.in:nth-child(3) { transition-delay: 0.24s; }
+      [data-anim] .faq-panel { animation: hero-in 0.35s cubic-bezier(.2,.7,.2,1) both; }
+      [data-anim] .btn-primary { transition: background 0.2s, box-shadow 0.3s; }
+      [data-anim] .btn-primary:hover { box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 14%, transparent); }
+    }
+  </style>
+</helmet>
+
+<div style="font-family:var(--font-body);font-size:17px;line-height:28px;color:var(--color-text)">
+
+  <!-- Header -->
+  <nav class="nav" style="max-width:1160px;margin:0 auto;padding:17px clamp(20px,5vw,40px)">
+    <a class="nav-brand" href="#top" style="color:var(--color-text);text-decoration:none">Discerns</a>
+    <a href="#esempio">Esempio</a>
+    <a href="#come-funziona">Come funziona</a>
+    <a href="#offerta">Offerta</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+
+  <!-- 1. Apertura -->
+  <section id="top" data-screen-label="Apertura" style="max-width:1160px;margin:0 auto;padding:clamp(56px,8vw,112px) clamp(20px,5vw,40px) clamp(48px,6vw,84px)">
+    <div style="max-width:760px;display:flex;flex-direction:column;align-items:flex-start;gap:0">
+      <p class="hero-in" style="margin:0 0 20px;font-size:13px;line-height:14px;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-accent)">Per professionisti, consulenti e imprenditori.</p>
+      <h1 class="hero-in" style="margin:0;font-family:var(--font-heading);font-weight:500;font-size:clamp(38px,5.4vw,68px);line-height:1.1;letter-spacing:-0.018em;margin-left:-0.06em">Un’ora di intervista al mese. Il tuo LinkedIn attivo, ogni settimana.</h1>
+      <p class="hero-in" style="margin:28px 0 0;max-width:58ch;font-size:19px;line-height:30px">Ti facciamo le domande giuste per far emergere quello che sai. Lo trasformiamo in 3 post a settimana, con la tua voce, le tue esperienze e i tuoi punti di vista.</p>
+      <p class="hero-in" style="margin:14px 0 0;font-size:19px;line-height:30px;font-family:var(--font-heading);font-weight:500">Tu parli e approvi. Noi scriviamo e pubblichiamo.</p>
+      <a class="btn btn-primary hero-in" href="{{ waHref }}" target="{{ waTarget }}" rel="noopener" style="margin-top:28px;min-height:48px;padding:0 22px;font-size:16px">Scrivici su WhatsApp</a>
+      <p class="hero-in" style="margin:14px 0 0;font-size:15px;color:color-mix(in srgb, var(--color-text) 64%, transparent)">Primo mese 99 €. Poi 199 €/mese. Disdici quando vuoi.</p>
+      <sc-if value="{{ waMissing }}" hint-placeholder-val="{{ false }}">
+        <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ false }}">
+          <p style="margin:20px 0 0;font-size:12px;line-height:20px;max-width:520px;color:color-mix(in srgb, var(--color-text) 60%, transparent);border:1px dashed var(--color-neutral-700);border-radius:var(--radius-md);padding:8px 12px"><span style="color:var(--color-accent)">Nota preview</span> · Numero WhatsApp non ancora configurato: il bottone è inattivo. Imposta il numero nei Tweaks.</p>
+        </sc-if>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- 2. Problema -->
+  <section data-screen-label="Problema" style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,40px)">
+    <hr style="height:1px;border:0;margin:0;background:linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent)">
+    <div class="reveal" style="display:flex;flex-wrap:wrap;gap:28px clamp(24px,5vw,80px);align-items:flex-start;padding:clamp(48px,6vw,84px) 0">
+      <h2 style="flex:4 1 300px;margin:0;font-family:var(--font-heading);font-weight:500;font-size:clamp(27px,3.1vw,36px);line-height:1.2;letter-spacing:-0.012em">LinkedIn può portarti clienti, contatti e opportunità. Tenerlo attivo è un altro lavoro.</h2>
+      <div style="flex:6 1 340px;max-width:58ch;display:flex;flex-direction:column;gap:20px">
+        <p style="margin:0;color:color-mix(in srgb, var(--color-text) 80%, transparent)">Devi trovare gli argomenti, scrivere i post, rivederli e pubblicare con costanza. Tutto mentre hai già clienti, progetti e un’attività da seguire.</p>
+        <p style="margin:0;color:color-mix(in srgb, var(--color-text) 80%, transparent)">E spesso le cose più interessanti da raccontare sono quelle che dai per scontate: come risolvi un problema, perché fai una scelta, cosa hai imparato da un errore. Quando ne parli con un cliente vengono fuori. Davanti a una pagina bianca, molto meno.</p>
+        <p style="margin:0;font-family:var(--font-heading);font-weight:500">Con Discerns parti da una conversazione. Alle domande e ai contenuti pensiamo noi.</p>
+      </div>
+    </div>
+    <hr style="height:1px;border:0;margin:0;background:linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent)">
+  </section>
+
+  <!-- 3. Prova e fondatore -->
+  <section id="esempio" data-screen-label="Prova e fondatore" style="max-width:1160px;margin:0 auto;padding:clamp(48px,6vw,84px) clamp(20px,5vw,40px)">
+    <div style="max-width:680px">
+      <h2 style="margin:0;font-family:var(--font-heading);font-weight:500;font-size:clamp(28px,3.4vw,40px);line-height:1.15;letter-spacing:-0.014em">Da una conversazione a un post vero.</h2>
+      <p style="margin:14px 0 0;color:color-mix(in srgb, var(--color-text) 70%, transparent)">Da un’intervista con Andrea Tomasello, founder di Discerns, a un contenuto pubblicato sul suo profilo LinkedIn.</p>
+    </div>
+
+    <div class="proof-grid reveal" style="display:grid;grid-template-columns:minmax(0,10fr) auto minmax(0,11fr);gap:28px;align-items:start;margin-top:36px">
+      <!-- TRASCRIZIONE PROVVISORIA, da sostituire con la trascrizione reale registrata -->
+      <div style="background:var(--color-surface);box-shadow:var(--shadow-sm);border-radius:var(--radius-md);padding:26px 28px;display:flex;flex-direction:column;gap:18px;font-size:16px;line-height:27px">
+        <span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent)">Estratto dell’intervista</span>
+        <p style="margin:0;color:color-mix(in srgb, var(--color-text) 64%, transparent)"><strong style="font-weight:500;color:var(--color-text)">Discerns:</strong> Usi Claude da mesi. Perché ci hai messo tanto a lasciare ChatGPT del tutto?</p>
+        <p style="margin:0;color:var(--color-text)"><strong style="font-weight:500">Andrea:</strong> Per una cosa sola, la memoria. <mark class="hl">Avevo anni di conversazioni là dentro: il contesto sul mio lavoro, sui progetti, sul modo in cui ragiono.</mark> Ricominciare da zero su Claude voleva dire rispiegare tutto ogni volta. Quindi tenevo aperti tutti e due, uno per il modello e uno per la memoria.</p>
+        <p style="margin:0;color:color-mix(in srgb, var(--color-text) 64%, transparent)"><strong style="font-weight:500;color:var(--color-text)">Discerns:</strong> E cosa è cambiato?</p>
+        <p style="margin:0;color:var(--color-text)"><strong style="font-weight:500">Andrea:</strong> Anthropic ha messo l’import della memoria. Ti danno un prompt, lo incolli in ChatGPT, lui ti tira fuori tutto quello che sa di te, e lo incolli in Claude. Trenta secondi.</p>
+        <p style="margin:0;color:color-mix(in srgb, var(--color-text) 64%, transparent)"><strong style="font-weight:500;color:var(--color-text)">Discerns:</strong> Perché per te è una cosa da raccontare e non solo una funzione in più?</p>
+        <p style="margin:0;color:var(--color-text)"><strong style="font-weight:500">Andrea:</strong> <mark class="hl">Perché la memoria è il vero lock-in dei tool AI. Più un modello ti conosce, più è utile. E più è utile, più diventa difficile cambiare.</mark> La gente confronta i modelli, ma quello che ti tiene legato è quanto ti conoscono.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;align-self:center;max-width:150px;text-align:center">
+        <svg class="arrow-h" width="56" height="16" viewBox="0 0 56 16" fill="none" aria-hidden="true" style="display:block"><path class="arrow-path" d="M1 8h53M47 2l7 6-7 6" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <svg class="arrow-v" width="16" height="56" viewBox="0 0 16 56" fill="none" aria-hidden="true" style="display:none"><path class="arrow-path" d="M8 1v53M2 47l6 7 6-7" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <p style="margin:0;font-size:13px;line-height:20px;color:color-mix(in srgb, var(--color-text) 64%, transparent)">Le parti evidenziate sono diventate il post.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+        <img src="assets/post-linkedin-memoria.png" alt="Post LinkedIn di Andrea Tomasello sull’import della memoria da ChatGPT a Claude" style="display:block;width:100%;height:auto;border-radius:var(--radius-md);box-shadow:var(--shadow-md)">
+        <!-- INSERIRE URL POST -->
+        <a href="#" style="font-size:15px;color:var(--color-accent-300);padding:8px 0">Vedi il post su LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:48px;padding-top:40px;position:relative">
+      <div aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right, transparent, var(--color-neutral-700) 48px calc(100% - 48px), transparent)"></div>
+      <div style="display:flex;flex-wrap:wrap;gap:28px clamp(24px,4vw,56px);align-items:flex-start">
+        <figure class="lighten" style="flex:0 0 auto;margin:0">
+          <image-slot id="ritratto-andrea-noct" shape="rounded" radius="8" placeholder="Ritratto di Andrea" style="width:168px;height:200px"></image-slot>
+        </figure>
+        <div style="flex:1 1 320px;max-width:58ch;display:flex;flex-direction:column;gap:14px">
+          <h3 style="margin:0;font-family:var(--font-heading);font-weight:500;font-size:clamp(22px,2.4vw,27px);line-height:1.2;letter-spacing:-0.01em">Lo usiamo anche per il LinkedIn del nostro founder.</h3>
+          <p style="margin:0;color:color-mix(in srgb, var(--color-text) 80%, transparent)">Andrea Tomasello è il founder di Discerns. Prepariamo i contenuti del suo profilo con questo sistema: Andrea li rivede e li approva prima della pubblicazione, proprio come farai tu.</p>
+          <a href="{{ linkedinHref }}" target="_blank" rel="noopener" style="align-self:flex-start;margin-top:4px;font-size:15px;color:var(--color-accent-300);padding:8px 0">Guarda i post di Andrea su LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Come funziona -->
+  <section id="come-funziona" data-screen-label="Come funziona" style="max-width:1160px;margin:0 auto;padding:clamp(40px,5vw,72px) clamp(20px,5vw,40px)">
+    <h2 style="margin:0 0 8px;font-family:var(--font-heading);font-weight:500;font-size:clamp(28px,3.4vw,40px);line-height:1.15;letter-spacing:-0.014em">Come lavoriamo, ogni mese.</h2>
+    <ol style="list-style:none;margin:28px 0 0;padding:0">
+      <li class="step-row" style="display:grid;grid-template-columns:minmax(40px,64px) minmax(0,360px) minmax(0,1fr);gap:14px clamp(20px,4vw,64px);align-items:baseline;padding:28px 0">
+        <p style="margin:0;font-family:var(--font-heading);font-weight:500;font-size:15px;color:var(--color-accent);font-feature-settings:'tnum' 1">01</p>
+        <h3 style="margin:0;font-family:var(--font-heading);font-weight:500;font-size:23px;line-height:28px;letter-spacing:-0.01em">Un’ora insieme, ogni mese.</h3>
+        <p style="margin:0;max-width:52ch;font-size:16px;color:color-mix(in srgb, var(--color-text) 78%, transparent)">Ci racconti il tuo lavoro. Ti facciamo domande e approfondiamo esperienze, scelte e idee che vale la pena condividere. Non devi preparare una lista di argomenti.</p>
+      </li>
+      <li class="step-row" style="display:grid;grid-template-columns:minmax(40px,64px) minmax(0,360px) minmax(0,1fr);gap:14px clamp(20px,4vw,64px);align-items:baseline;padding:28px 0;position:relative">
+        <div aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right, transparent, var(--color-neutral-700) 48px calc(100% - 48px), transparent)"></div>
+        <p style="margin:0;font-family:var(--font-heading);font-weight:500;font-size:15px;color:var(--color-accent);font-feature-settings:'tnum' 1">02</p>
+        <h3 style="margin:0;font-family:var(--font-heading);font-weight:500;font-size:23px;line-height:28px;letter-spacing:-0.01em">Tre post pronti, ogni settimana.</h3>
+        <p style="margin:0;max-width:52ch;font-size:16px;color:color-mix(in srgb, var(--color-text) 78%, transparent)">Trasformiamo quello che emerge in contenuti con il tuo modo di esprimerti, pensati per le persone che vuoi raggiungere.</p>
+      </li>
+      <li class="step-row" style="display:grid;grid-template-columns:minmax(40px,64px) minmax(0,360px) minmax(0,1fr);gap:14px clamp(20px,4vw,64px);align-items:baseline;padding:28px 0;position:relative">
+        <div aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right, transparent, var(--color-neutral-700) 48px calc(100% - 48px), transparent)"></div>
+        <p style="margin:0;font-family:var(--font-heading);font-weight:500;font-size:15px;color:var(--color-accent);font-feature-settings:'tnum' 1">03</p>
+        <h3 style="margin:0;font-family:var(--font-heading);font-weight:500;font-size:23px;line-height:28px;letter-spacing:-0.01em">Il tuo sì, poi la pubblicazione.</h3>
+        <p style="margin:0;max-width:52ch;font-size:16px;color:color-mix(in srgb, var(--color-text) 78%, transparent)">Leggi i post, ci segnali eventuali modifiche e li approvi. Noi ci occupiamo di programmarli e pubblicarli.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 5. Cervello digitale -->
+  <section data-screen-label="Cervello digitale" style="background:var(--color-surface)">
+    <div class="reveal" style="max-width:1160px;margin:0 auto;padding:clamp(44px,5.5vw,76px) clamp(20px,5vw,40px);display:flex;flex-wrap:wrap;gap:28px clamp(24px,5vw,80px);align-items:flex-start">
+      <div style="flex:1 1 320px;max-width:58ch;display:flex;flex-direction:column;gap:16px">
+        <h2 style="margin:0;font-family:var(--font-heading);font-weight:500;font-size:clamp(26px,3vw,34px);line-height:1.2;letter-spacing:-0.012em">Il tuo metodo, anche dentro ChatGPT e Claude.</h2>
+        <p style="margin:0;color:color-mix(in srgb, var(--color-text) 80%, transparent)">Dopo ogni intervista organizziamo esperienze, metodo e punti di vista nel tuo cervello digitale. Lo usiamo per creare i contenuti e lo arricchiamo nel tempo.</p>
+        <p style="margin:0;color:color-mix(in srgb, var(--color-text) 80%, transparent)">Puoi collegarlo a ChatGPT o Claude e chiedere, per esempio: “Scrivi un post su come gestisco le obiezioni dei clienti”. L’AI potrà lavorare a partire dalle esperienze e dalle idee che abbiamo raccolto con te su quel tema.</p>
+        <p style="margin:0;color:color-mix(in srgb, var(--color-text) 80%, transparent)">È una conoscenza che puoi riutilizzare anche tu. Collegarla ai tuoi strumenti è facoltativo: possiamo continuare a occuparci noi di tutti i post.</p>
+      </div>
+      <div style="flex:1 1 280px;max-width:420px;padding-top:6px">
+        <span style="display:block;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent);margin-bottom:10px">Un esempio di richiesta</span>
+        <div style="background:var(--color-bg);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);padding:16px 18px;font-size:16px;line-height:26px">“Scrivi un post su come gestisco le obiezioni dei clienti”</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Alternative e offerta -->
+  <section id="offerta" data-screen-label="Offerta" style="max-width:1160px;margin:0 auto;padding:clamp(48px,6vw,84px) clamp(20px,5vw,40px) clamp(24px,3vw,40px)">
+    <div style="max-width:680px;display:flex;flex-direction:column;gap:16px">
+      <h2 style="margin:0;font-family:var(--font-heading);font-weight:500;font-size:clamp(28px,3.4vw,40px);line-height:1.15;letter-spacing:-0.014em">Puoi scrivere da solo. Oppure affidare il lavoro a noi.</h2>
+      <p style="margin:0;color:color-mix(in srgb, var(--color-text) 80%, transparent)">Anche con ChatGPT, devi trovare gli argomenti, spiegare il tuo punto di vista, rivedere i testi e organizzare le uscite.</p>
+      <p style="margin:0;color:color-mix(in srgb, var(--color-text) 80%, transparent)">Un’agenzia o un ghostwriter possono occuparsi dei tuoi contenuti. Con Discerns deleghi intervista, scrittura e pubblicazione a 199 € al mese. In più, costruiamo il tuo cervello digitale: raccoglie quello che sai e puoi riutilizzarlo anche con ChatGPT o Claude.</p>
+    </div>
+  </section>
+
+  <section aria-label="Offerta" style="background:radial-gradient(900px 420px at 85% -40%, color-mix(in srgb, var(--color-section-glow) 70%, transparent), transparent 64%), var(--color-section)">
+    <div class="reveal" style="max-width:1160px;margin:0 auto;padding:clamp(44px,5.5vw,76px) clamp(20px,5vw,40px);display:flex;flex-wrap:wrap;gap:36px clamp(28px,5vw,72px)">
+      <div style="flex:6 1 320px;display:flex;flex-direction:column;gap:20px">
+        <h3 style="margin:0;font-family:var(--font-heading);font-weight:500;font-size:clamp(24px,2.8vw,32px);line-height:1.18;letter-spacing:-0.012em">Un solo piano.</h3>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;font-size:16px;line-height:26px">
+          <li style="display:flex;gap:14px;align-items:flex-start"><span aria-hidden="true" style="flex:0 0 22px;height:1px;background:var(--color-accent-300);margin-top:13px"></span><span>Un’ora di intervista al mese.</span></li>
+          <li style="display:flex;gap:14px;align-items:flex-start"><span aria-hidden="true" style="flex:0 0 22px;height:1px;background:var(--color-accent-300);margin-top:13px"></span><span>Tre post a settimana con la tua voce e le tue esperienze.</span></li>
+          <li style="display:flex;gap:14px;align-items:flex-start"><span aria-hidden="true" style="flex:0 0 22px;height:1px;background:var(--color-accent-300);margin-top:13px"></span><span>Revisione e approvazione prima di ogni pubblicazione.</span></li>
+          <li style="display:flex;gap:14px;align-items:flex-start"><span aria-hidden="true" style="flex:0 0 22px;height:1px;background:var(--color-accent-300);margin-top:13px"></span><span>Programmazione e pubblicazione su LinkedIn.</span></li>
+          <li style="display:flex;gap:14px;align-items:flex-start"><span aria-hidden="true" style="flex:0 0 22px;height:1px;background:var(--color-accent-300);margin-top:13px"></span><span>Cervello digitale aggiornato dopo le interviste e collegabile a ChatGPT o Claude.</span></li>
+        </ul>
+      </div>
+      <div aria-hidden="true" style="flex:0 0 1px;align-self:stretch;background:color-mix(in srgb, var(--color-text) 20%, transparent)"></div>
+      <div style="flex:4 1 280px;display:flex;flex-direction:column;align-items:flex-start;gap:14px">
+        <p style="margin:0;font-family:var(--font-heading);font-weight:500;font-size:clamp(38px,4.2vw,52px);line-height:1;letter-spacing:-0.02em;font-feature-settings:'tnum' 1">199 €<span style="font-family:var(--font-body);font-size:0.36em;font-weight:400;letter-spacing:0;margin-left:8px">/mese</span></p>
+        <p style="margin:0;font-size:18px;color:var(--color-accent-300);font-family:var(--font-heading);font-weight:500">Il primo mese: 99 €</p>
+        <p style="margin:6px 0 0;font-size:15px;color:color-mix(in srgb, var(--color-text) 78%, transparent)">Nessun costo di setup. Disdici quando vuoi.</p>
+        <p style="margin:0;font-size:15px;color:color-mix(in srgb, var(--color-text) 78%, transparent)">Soddisfatti o rimborsati: hai 10 giorni dalla consegna dei primi post, senza domande.</p>
+        <a class="btn btn-primary" href="{{ waHref }}" target="{{ waTarget }}" rel="noopener" style="margin-top:8px;min-height:48px;padding:0 22px;font-size:16px;color:var(--color-accent-300);border-color:var(--color-accent-300)">Scrivici su WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width:1160px;margin:0 auto;padding:16px clamp(20px,5vw,40px) 0">
+      <p style="margin:0;font-size:12px;line-height:20px;max-width:560px;color:color-mix(in srgb, var(--color-text) 60%, transparent);border:1px dashed var(--color-neutral-700);border-radius:var(--radius-md);padding:8px 12px"><span style="color:var(--color-accent)">Nota preview</span> · Dicitura IVA (inclusa/esclusa) da confermare con Andrea prima della pubblicazione.</p>
+    </div>
+  </sc-if>
+
+  <!-- 7. FAQ e contatto -->
+  <section id="faq" data-screen-label="FAQ e contatto" style="max-width:1160px;margin:0 auto;padding:clamp(48px,6vw,84px) clamp(20px,5vw,40px) 0">
+    <div style="max-width:760px">
+      <h2 style="margin:0 0 20px;font-family:var(--font-heading);font-weight:500;font-size:clamp(26px,3vw,34px);line-height:1.2;letter-spacing:-0.012em">Qualche domanda, prima di iniziare.</h2>
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+        <div style="position:relative">
+          <div aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent)"></div>
+          <button type="button" onClick="{{ f.toggle }}" aria-expanded="{{ f.open }}" aria-controls="{{ f.panelId }}" id="{{ f.buttonId }}" style="width:100%;min-height:56px;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:16px 0;background:none;border:0;cursor:pointer;text-align:left;font-family:var(--font-heading);font-weight:500;font-size:17px;line-height:26px;color:var(--color-text)" style-hover="color:var(--color-accent)">
+            <span>{{ f.q }}</span>
+            <span aria-hidden="true" style="flex:0 0 24px;text-align:center;font-size:20px;line-height:1;color:var(--color-accent)">{{ f.icon }}</span>
+          </button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+            <div id="{{ f.panelId }}" class="faq-panel" role="region aria-labelledby="{{ f.buttonId }}" style="padding:0 40px 22px 0;max-width:58ch;font-size:16px;color:color-mix(in srgb, var(--color-text) 80%, transparent)">{{ f.a }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+      <div aria-hidden="true" style="height:1px;background:linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent)"></div>
+    </div>
+
+    <div id="contatto" class="reveal" style="max-width:680px;margin-top:clamp(48px,6vw,84px);display:flex;flex-direction:column;align-items:flex-start;gap:14px">
+      <h2 style="margin:0;font-family:var(--font-heading);font-weight:500;font-size:clamp(26px,3vw,34px);line-height:1.2;letter-spacing:-0.012em">Parliamo del tuo LinkedIn?</h2>
+      <p style="margin:0;color:color-mix(in srgb, var(--color-text) 80%, transparent)">Scrivici cosa fai e cosa vorresti far conoscere del tuo lavoro. Ti spieghiamo come partire.</p>
+      <a class="btn btn-primary" href="{{ waHref }}" target="{{ waTarget }}" rel="noopener" style="margin-top:8px;min-height:48px;padding:0 22px;font-size:16px">Scrivici su WhatsApp</a>
+      <p style="margin:6px 0 0;font-size:15px;color:color-mix(in srgb, var(--color-text) 64%, transparent)">Primo mese 99 €. Poi 199 €/mese.</p>
+    </div>
+  </section>
+
+  <footer style="max-width:1160px;margin:0 auto;padding:clamp(40px,5vw,64px) clamp(20px,5vw,40px) 40px;font-size:13px;line-height:24px;color:color-mix(in srgb, var(--color-text) 55%, transparent)">
+    <div style="height:1px;background:linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent);margin-bottom:24px"></div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 32px">
+      <span style="font-family:var(--font-heading);font-weight:500;font-size:16px;color:var(--color-text)">Discerns</span>
+      <div style="display:flex;flex-wrap:wrap;gap:8px 24px">
+        <span>{{ companyLine }}</span>
+        <a href="{{ privacyHref }}" style="color:var(--color-accent-300)">Privacy</a>
+        <a href="{{ termsHref }}" style="color:var(--color-accent-300)">Termini</a>
+      </div>
+    </div>
+    <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:20px 0 0;font-size:12px;line-height:20px;max-width:640px;border:1px dashed var(--color-neutral-700);border-radius:var(--radius-md);padding:8px 12px"><span style="color:var(--color-accent)">Nota preview</span> · Dati aziendali e link legali da sostituire con quelli reali (Tweaks). Disattiva “Note preview” per la vista pubblica.</p>
+    </sc-if>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;whatsappNumber&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contatto&quot;},
+  &quot;linkedinUrl&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contatto&quot;},
+  &quot;previewNotes&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Preview&quot;},
+  &quot;companyLine&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Footer&quot;},
+  &quot;privacyUrl&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Footer&quot;},
+  &quot;termsUrl&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Footer&quot;}
+}">
+class Component extends DCLogic {
+  state = { open: -1 };
+  componentDidMount() {
+    if (!('IntersectionObserver' in window)) return;
+    document.body.setAttribute('data-anim', '');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    this._io = io;
+    const observe = () => document.querySelectorAll('.reveal:not(.in), .step-row:not(.in)').forEach(el => io.observe(el));
+    observe();
+    this._mo = new MutationObserver(observe);
+    this._mo.observe(document.body, { childList: true, subtree: true });
+  }
+  componentWillUnmount() { this._io?.disconnect(); this._mo?.disconnect(); }
+  renderVals() {
+    const p = this.props;
+    const num = (p.whatsappNumber ?? '').replace(/\D/g, '');
+    const msg = encodeURIComponent('Ciao Andrea, mi interessa Discerns per il mio LinkedIn.');
+    const waMissing = !num;
+    const data = [
+      ['Devo prepararmi per l’intervista?', 'Non devi preparare post o presentazioni. Ti facciamo domande sul tuo lavoro e approfondiamo insieme esperienze, decisioni e idee.'],
+      ['Come fate a scrivere con la mia voce?', 'Partiamo da come racconti le cose durante l’intervista: parole, esempi e punti di vista. Le tue indicazioni ci aiutano a rifinire i contenuti, e ogni post passa dalla tua approvazione.'],
+      ['Non posso farlo da solo con ChatGPT?', 'Puoi, se gli dai il contesto giusto. Se gli dici solo che mestiere fai, ti scrive il post medio del tuo settore. L’intervista serve a tirare fuori esperienze, criteri e ragioni delle tue scelte, anche quelle che dai per scontate. Noi le organizziamo, le usiamo per i post e ci occupiamo della pubblicazione.'],
+      ['Devo usare ChatGPT o Claude?', 'No. Ci occupiamo noi dei contenuti. Collegare il cervello digitale ai tuoi strumenti è una possibilità in più, se vuoi usarlo anche in autonomia.'],
+      ['Chi pubblica i post?', 'Noi, dopo la tua approvazione. Puoi chiederci modifiche prima che vengano programmati e pubblicati.'],
+      ['Posso disdire? E se non sono soddisfatto?', 'Puoi disdire quando vuoi, senza vincoli. E se i primi post non ti suonano tuoi, hai 10 giorni dalla loro consegna per chiedere il rimborso del primo mese, senza domande.'],
+    ];
+    const faqs = data.map(([q, a], i) => {
+      const open = this.state.open === i;
+      return { q, a, open, icon: open ? '−' : '+', panelId: 'faq-panel-' + i, buttonId: 'faq-btn-' + i,
+        toggle: () => this.setState(s => ({ open: s.open === i ? -1 : i })) };
+    });
+    return {
+      faqs,
+      waMissing,
+      waHref: waMissing ? '#contatto' : `https://wa.me/${num}?text=${msg}`,
+      waTarget: waMissing ? '_self' : '_blank',
+      showNotes: p.previewNotes ?? true,
+      linkedinHref: p.linkedinUrl || 'https://www.linkedin.com/',
+      companyLine: p.companyLine || 'Discerns · dati aziendali',
+      privacyHref: p.privacyUrl || '#',
+      termsHref: p.termsUrl || '#',
+    };
+  }
+}
+</script>
+</body>
+</html>

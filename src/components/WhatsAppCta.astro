@@ -1,0 +1,22 @@
+---
+import { whatsappLink } from '~/config/site';
+
+interface Props {
+  label?: string;
+  class?: string;
+}
+
+// La dicitura è identica in apertura, offerta e chiusura — di proposito.
+const { label = 'Scrivi su WhatsApp per iniziare', class: className } = Astro.props;
+
+// Senza numero configurato il CTA punta all'ancora #contatto nella stessa
+// scheda, così il bottone resta utile invece di rompersi.
+const wa = whatsappLink();
+---
+
+<a
+  class:list={['btn', 'btn-solid', 'cta', className]}
+  href={wa.href}
+  target={wa.target}
+  rel="noopener">{label}</a
+>

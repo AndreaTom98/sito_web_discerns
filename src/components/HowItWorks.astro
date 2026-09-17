@@ -1,0 +1,35 @@
+---
+const steps = [
+  {
+    n: '01',
+    title: 'Un’ora insieme, ogni mese.',
+    body: 'Ci racconti il tuo lavoro. Ti facciamo domande e approfondiamo esperienze, scelte e idee che vale la pena condividere. Non devi preparare una lista di argomenti.',
+  },
+  {
+    n: '02',
+    title: 'Tre post pronti, ogni settimana.',
+    body: 'Trasformiamo quello che emerge in contenuti con il tuo modo di esprimerti, pensati per le persone che vuoi raggiungere.',
+  },
+  {
+    n: '03',
+    title: 'Il tuo sì, poi la pubblicazione.',
+    body: 'Leggi i post, ci segnali eventuali modifiche e li approvi. Noi ci occupiamo di programmarli e pubblicarli.',
+  },
+];
+---
+
+<section id="come-funziona" class="wrap how" aria-label="Come funziona">
+  <h2>Come lavoriamo, ogni mese.</h2>
+  <ol class="steps">
+    {
+      steps.map((step, i) => (
+        <li class="step-row">
+          {i > 0 && <div class="rule-top" aria-hidden="true" />}
+          <p class="step-num">{step.n}</p>
+          <h3>{step.title}</h3>
+          <p>{step.body}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>

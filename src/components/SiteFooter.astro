@@ -1,0 +1,20 @@
+---
+import { site, linkOr } from '~/config/site';
+
+// Senza dati aziendali configurati non stampiamo un doppione del brand.
+const company = site.companyLine.trim();
+const privacyHref = linkOr(site.privacyUrl);
+const termsHref = linkOr(site.termsUrl);
+---
+
+<footer class="wrap site-footer">
+  <div class="rule" aria-hidden="true"></div>
+  <div class="footer-row">
+    <span class="footer-brand">Discerns</span>
+    <div class="footer-links">
+      {company && <span>{company}</span>}
+      <a href={privacyHref}>Privacy</a>
+      <a href={termsHref}>Termini</a>
+    </div>
+  </div>
+</footer>

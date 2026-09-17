@@ -1,0 +1,56 @@
+---
+// Gerarchia tipografica: introduzione breve, affermazione dominante, poi il
+// lavoro concreto reso come sequenza — le attività non si ripetono nel testo.
+const tasks = ['Trovare gli argomenti', 'Scrivere i post', 'Rivederli', 'Pubblicare'];
+---
+
+<section class="wrap" aria-label="Problema">
+  <hr class="rule" />
+  <div class="problem reveal">
+    <p class="problem-intro">LinkedIn può portarti clienti, contatti e opportunità.</p>
+    <h2 class="problem-statement">Tenerlo attivo è un vero e proprio lavoro.</h2>
+
+    <p class="problem-seq">
+      {
+        tasks.map((task, i) => (
+          <>
+            {i > 0 && (
+              <svg
+                class="seq-arrow"
+                width="22"
+                height="10"
+                viewBox="0 0 22 10"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 5h19M16 1l4 4-4 4"
+                  stroke="var(--color-accent)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            )}
+            <span class="seq-step">{task}</span>
+          </>
+        ))
+      }
+    </p>
+    <p class="problem-coda">
+      Con costanza, mentre hai già clienti, progetti e un’attività da seguire.
+    </p>
+
+    <div class="problem-copy">
+      <p class="dim">
+        E spesso le cose più interessanti da raccontare sono quelle che dai per scontate: come
+        risolvi un problema, perché fai una scelta, cosa hai imparato da un errore. Quando ne parli
+        con un cliente vengono fuori. Davanti a una pagina bianca, molto meno.
+      </p>
+      <p class="strong">
+        Con Discerns parti da una conversazione. Alle domande e ai contenuti pensiamo noi.
+      </p>
+    </div>
+  </div>
+  <hr class="rule" />
+</section>

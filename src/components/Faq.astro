@@ -1,0 +1,52 @@
+---
+import WhatsAppCta from './WhatsAppCta.astro';
+import { faqs } from '~/data/faq';
+---
+
+<section id="faq" class="wrap faq" aria-label="FAQ e contatto">
+  <div class="faq-inner">
+    <h2 class="section-title-sm">Qualche domanda, prima di iniziare.</h2>
+    {
+      faqs.map((faq) => (
+        <div class="faq-item">
+          <div class="rule-top" aria-hidden="true" />
+          <details class="faq-details" name="faq">
+            <summary class="faq-q">
+              <span>{faq.q}</span>
+              <span class="faq-icon" aria-hidden="true" />
+            </summary>
+            <div class="faq-panel">{faq.a}</div>
+          </details>
+        </div>
+      ))
+    }
+    <div class="rule" aria-hidden="true"></div>
+  </div>
+
+  <div id="contatto" class="contact reveal">
+    <h2 class="section-title-sm">Parliamo del tuo LinkedIn?</h2>
+    <p class="dim">
+      Scrivici cosa fai e cosa vorresti far conoscere del tuo lavoro. Ti spieghiamo come partire.
+    </p>
+    <WhatsAppCta />
+    <p class="contact-terms">Primo mese 99 €. Poi 199 €/mese.</p>
+  </div>
+</section>
+
+<script>
+  // L'attributo name= apre una sola voce alla volta nei browser recenti.
+  // Questo fallback fa lo stesso dove non è ancora supportato.
+  const supportsExclusive = 'name' in HTMLDetailsElement.prototype;
+
+  if (!supportsExclusive) {
+    const items = Array.from(document.querySelectorAll<HTMLDetailsElement>('.faq-details'));
+    items.forEach((item) => {
+      item.addEventListener('toggle', () => {
+        if (!item.open) return;
+        items.forEach((other) => {
+          if (other !== item) other.open = false;
+        });
+      });
+    });
+  }
+</script>

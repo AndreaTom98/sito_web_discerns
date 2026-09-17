@@ -1,0 +1,89 @@
+---
+import WhatsAppCta from './WhatsAppCta.astro';
+
+// Confronto compatto: righe brevi e allineate, non due paragrafi in scatola.
+const solo = ['Scegli gli argomenti', 'Scrivi e rivedi i testi', 'Organizzi le pubblicazioni'];
+const withUs = [
+  'Partecipi all’intervista',
+  'Approvi i contenuti',
+  'Noi prepariamo e pubblichiamo tre post a settimana',
+];
+
+const included = [
+  'Un’ora di intervista al mese.',
+  'Tre post a settimana con la tua voce e le tue esperienze.',
+  'Revisione e approvazione prima di ogni pubblicazione.',
+  'Programmazione e pubblicazione su LinkedIn.',
+  'Cervello digitale aggiornato dopo le interviste e collegabile a ChatGPT o Claude.',
+];
+---
+
+<section id="offerta" class="wrap offer-intro" aria-label="Alternative">
+  <h2 class="section-title">Puoi scrivere da solo. Oppure affidare il lavoro a noi.</h2>
+
+  <div class="compare reveal">
+    <div class="compare-col compare-solo">
+      <h3 class="compare-label">Da solo</h3>
+      <ul>
+        {
+          solo.map((item) => (
+            <li>
+              <span class="compare-dash" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="compare-col compare-us">
+      <h3 class="compare-label">Con Discerns</h3>
+      <ul>
+        {
+          withUs.map((item) => (
+            <li>
+              <span class="compare-dash" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <p class="compare-note">
+    Anche un’agenzia o un ghostwriter possono occuparsi dei tuoi contenuti. Con Discerns ricevi il
+    servizio gestito e, in più, il tuo cervello digitale.
+  </p>
+</section>
+
+<section class="offer-band" aria-label="Offerta">
+  <div class="wrap offer-band-inner reveal">
+    <div class="offer-included">
+      <h3>Un solo piano.</h3>
+      <ul class="offer-list">
+        {
+          included.map((item) => (
+            <li>
+              <span class="offer-dash" aria-hidden="true" />
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="offer-divider" aria-hidden="true"></div>
+    <div class="offer-price-col">
+      <p class="offer-price">199 €<span class="per">/mese</span></p>
+      <p class="offer-first-month">Il primo mese: 99 €</p>
+      {/* TODO: confermare la dicitura IVA (inclusa/esclusa) prima della pubblicazione. */}
+      <p class="offer-note">Nessun costo di setup. Disdici quando vuoi.</p>
+      <p class="offer-note">
+        Soddisfatti o rimborsati: hai 10 giorni dalla consegna dei primi post, senza domande.
+      </p>
+      <p class="offer-availability">
+        <span class="dot" aria-hidden="true"></span>5 posti disponibili per settembre
+      </p>
+      <WhatsAppCta />
+    </div>
+  </div>
+</section>

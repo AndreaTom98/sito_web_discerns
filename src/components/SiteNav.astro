@@ -1,0 +1,13 @@
+---
+const links = [
+  { href: '#esempio', label: 'Esempio' },
+  { href: '#come-funziona', label: 'Come funziona' },
+  { href: '#offerta', label: 'Offerta' },
+  { href: '#faq', label: 'FAQ' },
+];
+---
+
+<nav class="nav site-nav" aria-label="Navigazione principale">
+  <a class="nav-brand" href="#top">Discerns</a>
+  {links.map((link) => <a href={link.href}>{link.label}</a>)}
+</nav>

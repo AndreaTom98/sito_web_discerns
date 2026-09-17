@@ -1,0 +1,55 @@
+---
+// Il cervello digitale è un extra incluso: un unico riquadro distintivo,
+// non una sezione che compete con il servizio principale.
+const collected = ['Esperienze', 'Metodo', 'Punti di vista'];
+---
+
+<section class="wrap brain-wrap" aria-label="Cervello digitale">
+  <div class="brain-card reveal">
+    <div class="brain-main">
+      <span class="tag tag-accent brain-tag">In più, incluso</span>
+      <h2 class="brain-title">Il tuo cervello digitale, da usare anche con ChatGPT e Claude.</h2>
+      <p class="dim">
+        Raccogliamo il tuo metodo, le tue esperienze e i tuoi punti di vista in un cervello digitale
+        personale, che arricchiamo dopo ogni intervista.
+      </p>
+      <p class="dim">
+        Puoi collegarlo a ChatGPT o Claude per creare altri contenuti a partire da quello che sai.
+      </p>
+      <p class="strong">Usarlo è facoltativo: dei tuoi post continuiamo a occuparci noi.</p>
+    </div>
+
+    <!-- Raccogli → riusa: le voci si accumulano, la richiesta le riutilizza. -->
+    <div class="brain-demo">
+      <span class="kicker">Dopo ogni intervista</span>
+      <ul class="brain-notes">
+        {
+          collected.map((item) => (
+            <li>
+              <span class="note-dash" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+      <svg
+        class="brain-flow"
+        width="16"
+        height="34"
+        viewBox="0 0 16 34"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          class="arrow-path"
+          d="M8 1v27M2 24l6 7 6-7"
+          stroke="var(--color-accent)"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+      <span class="kicker">Un esempio di richiesta</span>
+      <div class="brain-quote">“Scrivi un post su come gestisco le obiezioni dei clienti”</div>
+    </div>
+  </div>
+</section>

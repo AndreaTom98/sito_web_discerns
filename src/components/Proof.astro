@@ -1,0 +1,109 @@
+---
+import { site, linkOr } from '~/config/site';
+import { interview } from '~/data/interview';
+
+// Link non ancora configurati: fallback sull'ancora #contatto, come per il
+// CTA WhatsApp. Nessun link morto in pagina, un solo punto da compilare.
+const postHref = linkOr(site.linkedinPostUrl);
+const profileHref = linkOr(site.linkedinUrl);
+// Un fallback interno non deve aprire una scheda nuova.
+const profileTarget = site.linkedinUrl ? '_blank' : '_self';
+---
+
+<section id="esempio" class="wrap section" aria-label="Prova e fondatore">
+  <div class="section-head">
+    <h2 class="section-title">Da una conversazione a un post vero.</h2>
+    <p class="section-sub">
+      Da un’intervista con Andrea Tomasello, founder di Discerns, a un contenuto pubblicato sul suo
+      profilo LinkedIn.
+    </p>
+  </div>
+
+  <div class="proof-grid reveal">
+    <!-- Trascrizione provvisoria: sostituire con quella reale in src/data/interview.ts -->
+    <div class="transcript">
+      <span class="kicker">Estratto dell’intervista</span>
+      {
+        interview.map((line) => (
+          <p class:list={[line.interviewer && 'is-interviewer']}>
+            <strong class="speaker">{line.speaker}:</strong>{' '}
+            {line.fragments.map((fragment) =>
+              fragment.highlight ? <mark class="hl">{fragment.text}</mark> : fragment.text
+            )}
+          </p>
+        ))
+      }
+    </div>
+
+    <div class="proof-arrow">
+      <svg class="arrow-h" width="56" height="16" viewBox="0 0 56 16" fill="none" aria-hidden="true">
+        <path
+          class="arrow-path"
+          d="M1 8h53M47 2l7 6-7 6"
+          stroke="var(--color-accent)"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+      <svg class="arrow-v" width="16" height="56" viewBox="0 0 16 56" fill="none" aria-hidden="true">
+        <path
+          class="arrow-path"
+          d="M8 1v53M2 47l6 7 6-7"
+          stroke="var(--color-accent)"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+      <p>Le parti evidenziate sono diventate il post.</p>
+    </div>
+
+    <div class="proof-post">
+      <img
+        src="/assets/post-linkedin-memoria.png"
+        alt="Post LinkedIn di Andrea Tomasello sull’import della memoria da ChatGPT a Claude"
+        width="818"
+        height="1446"
+        loading="lazy"
+        decoding="async"
+      />
+      <a class="link-accent" href={postHref}>Vedi il post su LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- Chiusura della dimostrazione: una firma, non una nuova spiegazione. -->
+  <div class="founder reveal">
+    <div class="rule-top" aria-hidden="true"></div>
+    <div class="founder-row">
+      {
+        site.founderPortrait ? (
+          <figure class="founder-figure lighten">
+            <img
+              class="founder-photo"
+              src={site.founderPortrait}
+              alt={site.founderPortraitAlt}
+              width="76"
+              height="76"
+              loading="lazy"
+            />
+          </figure>
+        ) : (
+          <div class="founder-monogram" aria-hidden="true">
+            AT
+          </div>
+        )
+      }
+      <div class="founder-info">
+        <p class="founder-name">
+          Andrea Tomasello <span class="founder-role">— Founder di Discerns</span>
+        </p>
+        <p class="founder-sentence">
+          Il post che hai appena visto è nato dal lavoro che facciamo anche sul suo profilo:
+          intervista, preparazione dei contenuti e approvazione.
+        </p>
+        <a class="link-accent founder-link" href={profileHref} target={profileTarget} rel="noopener">
+          Guarda altri post di Andrea
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
