@@ -342,6 +342,11 @@ button:focus-visible {
   letter-spacing: -0.018em;
 }
 
+/* Le due frasi del titolo non si spezzano a metà: la seconda va a capo. */
+.hero-title-line {
+  display: block;
+}
+
 .hero-lead {
   margin: 28px 0 0;
   max-width: 58ch;
