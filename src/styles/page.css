@@ -1062,11 +1062,43 @@ button:focus-visible {
   margin-left: 8px;
 }
 
-/* Il primo mese come tag sopra il prezzo: si legge prima del prezzo pieno. */
-.offer-first-tag {
-  font-size: 13px;
-  padding: 4px 10px;
-  box-shadow: inset 0 0 0 1px var(--color-accent-700);
+/* Il primo mese: la prima cosa che si legge nella colonna prezzo. Un
+   blocco pieno in accento, con la cifra in grande: sta sopra il prezzo
+   pieno e lo anticipa, senza competere con il CTA (che resta più chiaro). */
+.offer-first {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px 8px 14px;
+  border-radius: var(--radius-md);
+  background: var(--color-accent-700);
+  box-shadow:
+    inset 0 0 0 1px var(--color-accent-500),
+    0 0 0 4px color-mix(in srgb, var(--color-accent) 14%, transparent);
+  color: var(--color-accent-100);
+}
+
+.offer-first-label {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.offer-first-price {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+  font-feature-settings: 'tnum' 1;
+  color: var(--color-accent-100);
+}
+
+/* Un po' d'aria tra la promo e il prezzo pieno. */
+.offer-first + .offer-price {
+  margin-top: 4px;
 }
 
 .offer-guarantees {

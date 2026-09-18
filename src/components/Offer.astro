@@ -64,7 +64,7 @@ const alternatives: { name: string; us?: boolean; values: Cell[] }[] = [
 
 const included = [
   'Un’ora di intervista al mese.',
-  'Tre post a settimana con la tua voce e le tue esperienze.',
+  'Tre post a settimana con la tua voce e le tue esperienze, curati dai nostri esperti.',
   'Revisione e approvazione prima di ogni pubblicazione.',
   'Programmazione e pubblicazione su LinkedIn.',
   'Cervello digitale che cresce a ogni intervista, collegabile al tuo ChatGPT o Claude, e che resta tuo.',
@@ -79,7 +79,7 @@ const guarantees = [
 const availability = site.availabilityLine.trim();
 ---
 
-<section id="offerta" class="wrap offer-intro" aria-labelledby="alternative-title">
+<section id="pricing" class="wrap offer-intro" aria-labelledby="alternative-title">
   <div class="section-head">
     <h2 id="alternative-title" class="section-title">
       Quello che sai vale. Il problema è che sta chiuso nella tua testa.
@@ -148,7 +148,10 @@ const availability = site.availabilityLine.trim();
     </div>
     <div class="offer-divider" aria-hidden="true"></div>
     <div class="offer-price-col">
-      <span class="tag tag-accent offer-first-tag">Il primo mese: €99</span>
+      <p class="offer-first">
+        <span class="offer-first-label">Il primo mese</span>
+        <strong class="offer-first-price">€99</strong>
+      </p>
       <p class="offer-price">€199<span class="per">/mese</span></p>
       {/* TODO: confermare la dicitura IVA (inclusa/esclusa) prima della pubblicazione. */}
       <ul class="offer-guarantees">

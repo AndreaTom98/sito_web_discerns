@@ -15,7 +15,7 @@ export interface SiteConfig {
   whatsappMessage: string;
   /** URL del profilo LinkedIn di Andrea Tomasello. */
   linkedinUrl: string;
-  /** URL del singolo post LinkedIn mostrato nella sezione "Come funziona". */
+  /** URL del singolo post LinkedIn mostrato nella sezione "L’intervista". */
   linkedinPostUrl: string;
   /** Dati aziendali mostrati nel footer. */
   companyName: string;
@@ -26,7 +26,7 @@ export interface SiteConfig {
   termsUrl: string;
   privacyUrl: string;
   cookieUrl: string;
-  /** Ritratto di Andrea nella sezione "Come funziona".
+  /** Ritratto di Andrea nella sezione "L’intervista".
    *  Metti il file in public/assets/ e indica qui il percorso, es.
    *  "/assets/ritratto-andrea.jpg". Vuoto = segnaposto. */
   founderPortrait: string;

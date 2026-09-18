@@ -1,9 +1,5 @@
 /**
- * Estratto dell'intervista mostrato nella sezione "Esempio".
- *
- * NOTA — nel prototipo questo blocco era marcato "TRASCRIZIONE PROVVISORIA,
- * da sostituire con la trascrizione reale registrata". Il testo qui sotto è
- * quello del prototipo: va sostituito con la trascrizione vera.
+ * Estratto dell'intervista mostrato nella sezione "L’intervista" (03/2026).
  *
  * `highlight: true` applica l'evidenziazione .hl al passaggio: sono le parti
  * che, nella narrazione della pagina, sono poi diventate il post.
@@ -28,7 +24,7 @@ export const interview: InterviewLine[] = [
     speaker: 'Intervistatore',
     interviewer: true,
     fragments: [
-      { text: 'Usi Claude da mesi. Perché ci hai messo tanto a lasciare ChatGPT del tutto?' },
+      { text: 'Usi Claude da mesi, perché ci hai messo tanto a lasciare ChatGPT del tutto?' },
     ],
   },
   {
@@ -36,24 +32,24 @@ export const interview: InterviewLine[] = [
     fragments: [
       { text: 'Per una cosa sola, la memoria. ' },
       {
-        text: 'Avevo anni di conversazioni là dentro: il contesto sul mio lavoro, sui progetti, sul modo in cui ragiono.',
+        text: 'Avevo anni di conversazioni là dentro, come il contesto sul mio lavoro, e sui progetti e anche sul modo in cui ragiono.',
         highlight: true,
       },
       {
-        text: ' Ricominciare da zero su Claude voleva dire rispiegare tutto ogni volta. Quindi tenevo aperti tutti e due, uno per il modello e uno per la memoria.',
+        text: ' Ricominciare da zero su Claude voleva dire rispiegare tutto ogni volta, quindi tenevo aperti tutti e due, uno per il modello e uno per la memoria.',
       },
     ],
   },
   {
     speaker: 'Intervistatore',
     interviewer: true,
-    fragments: [{ text: 'E cosa è cambiato?' }],
+    fragments: [{ text: 'E cosa è cambiato di preciso?' }],
   },
   {
     speaker: 'Andrea',
     fragments: [
       {
-        text: 'Anthropic ha messo l’import della memoria. Ti danno un prompt, lo incolli in ChatGPT, lui ti tira fuori tutto quello che sa di te, e lo incolli in Claude. Trenta secondi.',
+        text: 'Anthropic ha messo l’import della memoria… ti danno un prompt, lo incolli in ChatGPT e lui ti tira fuori tutto quello che sa di te, e poi lo incolli in Claude, è un processo da 30 secondi.',
       },
     ],
   },
@@ -68,11 +64,11 @@ export const interview: InterviewLine[] = [
     speaker: 'Andrea',
     fragments: [
       {
-        text: 'Perché la memoria è il vero lock-in dei tool AI. Più un modello ti conosce, più è utile. E più è utile, più diventa difficile cambiare.',
+        text: 'Perché la memoria è il vero lock-in dei tool AI. Più un modello ti conosce, più è utile, e più è utile, più diventa difficile cambiare.',
         highlight: true,
       },
       {
-        text: ' La gente confronta i modelli, ma quello che ti tiene legato è quanto ti conoscono.',
+        text: ' La gente spesso confronta i modelli, ma quello che ti tiene legato è quanto ti conoscono.',
       },
     ],
   },

@@ -27,7 +27,7 @@ Sono i valori che nel prototipo erano props ancora vuote, marcati `TODO`:
 | Campo | Stato |
 | --- | --- |
 | `whatsappNumber` | **Da compilare**: numero WhatsApp in formato internazionale |
-| `linkedinPostUrl` | **Da compilare**: URL del post mostrato nella sezione "Come funziona" |
+| `linkedinPostUrl` | **Da compilare**: URL del post mostrato nella sezione "L’intervista" |
 | `ogImage` | **Da compilare**: immagine di anteprima dei link, es. `/assets/og-discerns.png` (1200×630). Vuota = nessun tag `og:image` |
 | `availabilityLine` | Compilato ("5 posti disponibili per settembre"): va tenuto vero, stringa vuota lo nasconde |
 | `linkedinUrl` | Compilato: profilo di Andrea |
@@ -39,11 +39,10 @@ Finché restano vuoti **il sito funziona lo stesso**: i CTA WhatsApp e i link
 non configurati puntano all'ancora `#contatto`, come già previsto dal
 prototipo. Nessun link morto in pagina.
 
-Altri due punti aperti ereditati dal prototipo:
+Altri punti:
 
-- **Trascrizione dell'intervista** (`src/data/interview.ts`) — nel prototipo
-  era marcata provvisoria. Va sostituita con la trascrizione reale. I
-  passaggi con `highlight: true` sono quelli evidenziati in pagina.
+- **Trascrizione dell'intervista** (`src/data/interview.ts`): è quella reale
+  del 03/2026. I passaggi con `highlight: true` sono quelli evidenziati.
 - **Dicitura IVA** — nella sezione prezzo va confermato se i €199 sono IVA
   inclusa o esclusa (vedi TODO in `src/components/Offer.astro`).
 
