@@ -65,9 +65,9 @@ export const meta = {
   description:
     'Ti facciamo le domande giuste per far emergere quello che sai. Lo trasformiamo in 3 post a settimana su LinkedIn, con la tua voce, le tue esperienze e i tuoi punti di vista.',
   /** Titolo e testo dell'anteprima quando il link viene condiviso. */
-  ogTitle: 'Il tuo LinkedIn attivo ogni settimana. Al resto pensiamo noi.',
+  ogTitle: 'Fatti conoscere per quello che sai. Su LinkedIn, ogni settimana.',
   ogDescription:
-    'Ti intervistiamo, trasformiamo quello che sai in 3 post a settimana con la tua voce, li rileggiamo uno a uno e li pubblichiamo. Tu li approvi e basta.',
+    'Ti intervistiamo, trasformiamo quello che ci racconti in 3 post a settimana con la tua voce, li rileggiamo uno a uno e li pubblichiamo. Tu li approvi.',
   locale: 'it_IT',
   lang: 'it',
 } as const;

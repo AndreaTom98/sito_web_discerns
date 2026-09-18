@@ -253,6 +253,11 @@ button:focus-visible {
   font-size: 14px;
 }
 
+.header-cta .cta-icon {
+  width: 17px;
+  height: 17px;
+}
+
 /* Da tablet: una riga sola, e la barra resta in alto mentre scorri, su un
    fondo velato che lascia intravedere la pagina. */
 @media (min-width: 720px) {
@@ -311,18 +316,73 @@ button:focus-visible {
 
 /* ── 1. Apertura ─────────────────────────────────────────────────────── */
 
+/* Tutto centrato. Il hero è a tutta larghezza per ospitare bagliore e
+   griglia; il testo sta in un contenitore di 880px, il titolo può usare
+   tutta la larghezza del wrap (a 64-74px le sue due righe non stanno in
+   880px). */
 .hero {
-  padding-block: clamp(56px, 8vw, 112px) clamp(48px, 6vw, 84px);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(48px, 9vw, 96px) clamp(56px, 7vw, 88px);
+}
+
+/* Desktop: circa l'88% della viewport compresa la barra in alto, così si
+   intravede l'inizio della sezione dopo. Mobile: altezza naturale. */
+@media (min-width: 900px) and (min-height: 640px) {
+  .hero {
+    display: flex;
+    align-items: center;
+    min-height: calc(88vh - 68px);
+    min-height: calc(88svh - 68px);
+    /* Il centraggio distribuisce lo spazio: il padding resta un margine
+       minimo, altrimenti su schermi bassi il hero supera l'88%. */
+    padding-block: 32px 40px;
+  }
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Bagliore radiale in accento, poco sopra il titolo: dissolve in ~700px. */
+.hero-glow {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  width: 1400px;
+  height: 1000px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--color-accent) 22%, transparent),
+    transparent
+  );
+}
+
+/* Griglia di punti appena percepibile, che sfuma verso i bordi. */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: radial-gradient(circle, var(--color-text) 1px, transparent 1.4px);
+  background-size: 28px 28px;
+  background-position: center;
+  -webkit-mask-image: radial-gradient(ellipse 58% 60% at 50% 42%, black 25%, transparent 100%);
+  mask-image: radial-gradient(ellipse 58% 60% at 50% 42%, black 25%, transparent 100%);
 }
 
 .hero-inner {
-  max-width: 760px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
 }
 
-.hero-eyebrow,
 .problem-eyebrow {
   margin: 0 0 20px;
   font-size: 13px;
@@ -334,34 +394,141 @@ button:focus-visible {
 
 .hero-title {
   margin: 0;
-  margin-left: -0.06em; /* allinea otticamente la maiuscola al bordo sinistro */
   font-family: var(--font-heading);
-  font-weight: 500;
-  font-size: clamp(38px, 5.4vw, 68px);
-  line-height: 1.1;
-  letter-spacing: -0.018em;
+  font-weight: 600;
+  /* 64px è il massimo a cui "Fatti conoscere per quello che sai." sta su
+     una riga nei 1080px utili del wrap (misurata: 993px). */
+  font-size: clamp(38px, 5.2vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
 }
 
-/* Le due frasi del titolo non si spezzano a metà: la seconda va a capo. */
-.hero-title-line {
+/* L'unico punto colorato del titolo. Accento chiaro della rampa: sul fondo
+   notte regge il contrasto (circa 8,5:1), l'accento pieno sarebbe al limite. */
+/* "ogni settimana" non si separa: su mobile evita "ogni / settimana". */
+.hero-title .nowrap {
+  white-space: nowrap;
+}
+
+.hero-accent {
+  font-style: italic;
+  color: var(--color-accent-400);
+}
+
+/* Lo sforzo, come promessa: una pill leggibile, non un'etichetta. */
+.hero-badge {
+  margin: 26px 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px 7px 13px;
+  border-radius: calc(var(--radius-lg) * 1.5);
+  white-space: nowrap;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--color-accent-300);
+  background: color-mix(in srgb, var(--color-accent) 11%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-accent-300) 30%, transparent);
+}
+
+.hero-badge-icon {
   display: block;
+  flex: 0 0 auto;
 }
 
 .hero-lead {
   margin: 28px 0 0;
-  max-width: 58ch;
-  font-size: 19px;
-  line-height: 30px;
+  max-width: 640px;
+  font-size: clamp(18px, 1.6vw, 20px);
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--color-text) 72%, transparent);
 }
 
-.hero .cta {
-  margin-top: 28px;
+/* CTA del hero: grande, con l'icona di WhatsApp. Testo scuro sull'accento:
+   il bianco su questo viola si ferma a 3,4:1, sotto la soglia per 17px. */
+.hero .cta-hero {
+  margin-top: 38px;
+  min-height: 54px;
+  padding: 0 28px;
+  gap: 10px;
+  font-size: 17px;
+}
+
+.cta-icon {
+  display: block;
+  flex: 0 0 auto;
 }
 
 .hero-terms {
-  margin: 14px 0 0;
+  margin: 16px 0 0;
   font-size: 15px;
+  line-height: 22px;
+  color: color-mix(in srgb, var(--color-text) 62%, transparent);
+}
+
+/* Striscia di flusso: la sintesi del sottotitolo in tre passi. */
+.hero-flow {
+  list-style: none;
+  margin: 44px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 14px;
+  font-size: 14px;
+  line-height: 20px;
   color: color-mix(in srgb, var(--color-text) 64%, transparent);
+}
+
+.hero-flow li {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.flow-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flow-dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.flow-arrow {
+  display: block;
+  flex: 0 0 auto;
+  color: var(--color-accent);
+}
+
+@media (max-width: 719px) {
+  .hero-flow,
+  .hero-flow li {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .flow-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+.hero .cta-hero:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px -8px color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+
+.hero .cta-hero:active {
+  transform: none;
 }
 
 /* ── 2. Problema ─────────────────────────────────────────────────────── */
@@ -1422,6 +1589,26 @@ button:focus-visible {
    il sistema non chiede movimento ridotto. Senza JS il contenuto è
    interamente visibile: nessun blocco resta a opacità 0. */
 
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes glow-breathe {
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 1.06;
+  }
+}
+
 @keyframes hero-in {
   from {
     opacity: 0;
@@ -1435,22 +1622,34 @@ button:focus-visible {
 
 @media (prefers-reduced-motion: no-preference) {
   [data-anim] .hero-in {
-    animation: hero-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation: hero-rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   }
   [data-anim] .hero-in:nth-child(2) {
-    animation-delay: 0.08s;
+    animation-delay: 0.09s;
   }
   [data-anim] .hero-in:nth-child(3) {
-    animation-delay: 0.16s;
+    animation-delay: 0.18s;
   }
   [data-anim] .hero-in:nth-child(4) {
-    animation-delay: 0.24s;
+    animation-delay: 0.27s;
   }
   [data-anim] .hero-in:nth-child(5) {
-    animation-delay: 0.32s;
+    animation-delay: 0.36s;
   }
   [data-anim] .hero-in:nth-child(6) {
-    animation-delay: 0.38s;
+    animation-delay: 0.45s;
+  }
+
+  /* Il bagliore respira, lentissimo. È decorativo: non dipende da data-anim. */
+  .hero-glow {
+    animation: glow-breathe 8s ease-in-out infinite alternate;
+  }
+
+  .hero .cta-hero {
+    transition:
+      background 0.2s,
+      transform 0.2s,
+      box-shadow 0.25s;
   }
 
   [data-anim] .reveal {
@@ -1519,6 +1718,9 @@ button:focus-visible {
   }
   [data-anim] .btn-solid:hover {
     box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 18%, transparent);
+  }
+  [data-anim] .hero .cta-hero:hover {
+    box-shadow: 0 10px 28px -8px color-mix(in srgb, var(--color-accent) 30%, transparent);
   }
 
   /* La sequenza del problema entra un passo alla volta. */

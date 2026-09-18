@@ -1,18 +1,60 @@
 ---
 import WhatsAppCta from './WhatsAppCta.astro';
+
+// Sintesi visiva del sottotitolo, non un'altra sezione.
+const flow = [
+  'Un’ora di intervista',
+  '3 post a settimana, con la tua voce',
+  'Pubblicati da noi, approvati da te',
+];
 ---
 
-<section id="top" class="wrap hero" aria-label="Apertura">
-  <div class="hero-inner">
-    <p class="hero-eyebrow hero-in">Un’ora al mese del tuo tempo.</p>
-    <h1 class="hero-title hero-in">
-      Il tuo LinkedIn attivo ogni settimana. <span class="hero-title-line">Al resto pensiamo noi.</span>
+<section id="top" class="hero" aria-labelledby="hero-title">
+  <!-- Bagliore e griglia: solo atmosfera, dietro al testo. -->
+  <div class="hero-bg" aria-hidden="true">
+    <span class="hero-glow"></span>
+    <span class="hero-grid"></span>
+  </div>
+
+  <div class="wrap hero-inner">
+    <h1 id="hero-title" class="hero-title hero-in">
+      Fatti conoscere per <em class="hero-accent">quello che sai</em>.<br />
+      Su LinkedIn, <span class="nowrap">ogni settimana.</span>
     </h1>
-    <p class="hero-lead hero-in">
-      Ti intervistiamo, trasformiamo quello che sai in 3 post a settimana con la tua voce, li
-      rileggiamo uno a uno e li pubblichiamo. Tu li approvi e basta.
+
+    <p class="hero-badge hero-in">
+      <svg class="hero-badge-icon" viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.5"></circle>
+        <path d="M8 4.75V8l2.25 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      Tu ci metti un’ora al mese.
     </p>
-    <WhatsAppCta class="hero-in" />
+
+    <p class="hero-lead hero-in">
+      Ti intervistiamo, trasformiamo quello che ci racconti in 3 post a settimana con la tua voce, li
+      rileggiamo uno a uno e li pubblichiamo. Tu li approvi.
+    </p>
+
+    <WhatsAppCta class="hero-in cta-hero" label="Scrivici su WhatsApp" icon />
+
     <p class="hero-terms hero-in">Primo mese €99. Poi €199/mese. Disdici quando vuoi.</p>
+
+    <ol class="hero-flow hero-in" aria-label="In breve">
+      {
+        flow.map((step, i) => (
+          <li>
+            {i > 0 && (
+              <svg class="flow-arrow" viewBox="0 0 20 10" width="20" height="10" fill="none" aria-hidden="true">
+                <path d="M1 5h17M14 1l4 4-4 4" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+            <span class="flow-step">
+              <span class="flow-dot" aria-hidden="true" />
+              {step}
+            </span>
+          </li>
+        ))
+      }
+    </ol>
   </div>
 </section>
