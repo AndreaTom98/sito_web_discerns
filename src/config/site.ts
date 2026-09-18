@@ -56,7 +56,7 @@ export const site: SiteConfig = {
   founderPortrait: '/assets/andrea-tomasello.jpg',
   founderPortraitAlt: 'Ritratto di Andrea Tomasello, founder di Discerns',
   availabilityLine: '5 posti disponibili per settembre',
-  ogImage: '', // TODO: immagine di anteprima, la fornisce Andrea
+  ogImage: '/assets/og-discerns.png',
 };
 
 /** Metadati per <head>. */
@@ -64,6 +64,10 @@ export const meta = {
   title: 'Discerns · Un’ora di intervista al mese. Il tuo LinkedIn attivo, ogni settimana.',
   description:
     'Ti facciamo le domande giuste per far emergere quello che sai. Lo trasformiamo in 3 post a settimana su LinkedIn, con la tua voce, le tue esperienze e i tuoi punti di vista.',
+  /** Titolo e testo dell'anteprima quando il link viene condiviso. */
+  ogTitle: 'Il tuo LinkedIn attivo ogni settimana. Al resto pensiamo noi.',
+  ogDescription:
+    'Ti intervistiamo, trasformiamo quello che sai in 3 post a settimana con la tua voce, li rileggiamo uno a uno e li pubblichiamo. Tu li approvi e basta.',
   locale: 'it_IT',
   lang: 'it',
 } as const;
