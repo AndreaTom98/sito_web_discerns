@@ -18,7 +18,7 @@ export const faqs: FaqItem[] = [
   },
   {
     q: 'Devo usare ChatGPT o Claude?',
-    a: 'No. Ci occupiamo noi dei contenuti. Collegare il cervello digitale ai tuoi strumenti è una possibilità in più, se vuoi usarlo anche in autonomia.',
+    a: 'No. Dei contenuti ci occupiamo noi. Il cervello digitale è tuo e puoi collegarlo ai tuoi strumenti, se vuoi usarlo anche in autonomia.',
   },
   {
     q: 'Chi pubblica i post?',

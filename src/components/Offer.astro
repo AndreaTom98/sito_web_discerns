@@ -1,12 +1,62 @@
 ---
 import WhatsAppCta from './WhatsAppCta.astro';
+import { site } from '~/config/site';
 
-// Confronto compatto: righe brevi e allineate, non due paragrafi in scatola.
-const solo = ['Scegli gli argomenti', 'Scrivi e rivedi i testi', 'Organizzi le pubblicazioni'];
-const withUs = [
-  'Partecipi all’intervista',
-  'Approvi i contenuti',
-  'Noi prepariamo e pubblichiamo tre post a settimana',
+// Confronto tra le quattro strade. Il markup è per alternativa (un blocco con
+// titolo e una lista di definizioni ciascuno): così uno screen reader legge
+// "Non fare nulla, il tuo tempo: zero, quanto costa: niente..." e su mobile i
+// blocchi si impilano senza trucchi. Su desktop gli stessi blocchi diventano
+// colonne allineate riga per riga con CSS subgrid, senza JavaScript.
+const criteria = [
+  'Il tuo tempo, ogni mese',
+  'Quanto costa',
+  'Suona come te?',
+  'Quanto dura',
+  'Cosa resta tuo se smetti',
+];
+
+const alternatives = [
+  {
+    name: 'Non fare nulla',
+    values: [
+      'Zero',
+      'Niente. Ma il profilo è fermo, e le opportunità vanno a chi è visibile',
+      'Non parli',
+      'Nessuna costanza',
+      'Niente',
+    ],
+  },
+  {
+    name: 'Fai da te con ChatGPT',
+    values: [
+      'Ore ogni settimana: trovare argomenti, scrivere, rivedere, pubblicare',
+      'Il tuo tempo',
+      'Se gli dici solo che mestiere fai, scrive il post medio del tuo settore',
+      'Le prime tre settimane',
+      'Una cartella di bozze',
+    ],
+  },
+  {
+    name: 'Agenzia o ghostwriter',
+    values: [
+      'Call, brief e revisioni',
+      'Spesso oltre €1.000 al mese',
+      'Dopo mesi di brief',
+      'Finché paghi',
+      'Niente',
+    ],
+  },
+  {
+    name: 'Discerns',
+    us: true,
+    values: [
+      'Un’ora di intervista',
+      '€199 al mese',
+      'Dall’intervista: le tue parole, i tuoi esempi, i tuoi punti di vista',
+      'Tre post a settimana, ogni settimana',
+      'Il tuo cervello digitale',
+    ],
+  },
 ];
 
 const included = [
@@ -14,45 +64,60 @@ const included = [
   'Tre post a settimana con la tua voce e le tue esperienze.',
   'Revisione e approvazione prima di ogni pubblicazione.',
   'Programmazione e pubblicazione su LinkedIn.',
-  'Cervello digitale aggiornato dopo le interviste e collegabile a ChatGPT o Claude.',
+  'Cervello digitale che cresce a ogni intervista, collegabile al tuo ChatGPT o Claude, e che resta tuo.',
 ];
+
+const guarantees = [
+  'Nessun costo di setup',
+  'Soddisfatti o rimborsati: 10 giorni dalla consegna dei primi post, senza domande',
+  'Disdici quando vuoi',
+];
+
+const availability = site.availabilityLine.trim();
 ---
 
-<section id="offerta" class="wrap offer-intro" aria-label="Alternative">
-  <h2 class="section-title">Puoi scrivere da solo. Oppure affidare il lavoro a noi.</h2>
-
-  <div class="compare reveal">
-    <div class="compare-col compare-solo">
-      <h3 class="compare-label">Da solo</h3>
-      <ul>
-        {
-          solo.map((item) => (
-            <li>
-              <span class="compare-dash" aria-hidden="true" />
-              {item}
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-    <div class="compare-col compare-us">
-      <h3 class="compare-label">Con Discerns</h3>
-      <ul>
-        {
-          withUs.map((item) => (
-            <li>
-              <span class="compare-dash" aria-hidden="true" />
-              {item}
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+<section id="offerta" class="wrap offer-intro" aria-labelledby="alternative-title">
+  <div class="section-head">
+    <h2 id="alternative-title" class="section-title">
+      Quello che sai vale. Il problema è che sta chiuso nella tua testa.
+    </h2>
+    <p class="section-sub">Tirarlo fuori ogni settimana è un lavoro a sé. Hai tre strade, più una.</p>
   </div>
 
-  <p class="compare-note">
-    Anche un’agenzia o un ghostwriter possono occuparsi dei tuoi contenuti. Con Discerns ricevi il
-    servizio gestito e, in più, il tuo cervello digitale.
+  <div class="cmp reveal">
+    {/* Etichette di riga solo visive: per gli screen reader ogni blocco ha le sue. */}
+    <div class="cmp-labels" aria-hidden="true">
+      <span class="cmp-corner"></span>
+      {criteria.map((criterion) => <span class="cmp-label">{criterion}</span>)}
+    </div>
+
+    {
+      alternatives.map((alt, col) => (
+        <div class:list={['cmp-alt', alt.us && 'cmp-alt--us']} style={`--col: ${col + 2}`}>
+          <h3 class="cmp-name">{alt.name}</h3>
+          <dl class="cmp-values">
+            {criteria.map((criterion, row) => (
+              <div class="cmp-row">
+                <dt>{criterion}</dt>
+                <dd>{alt.values[row]}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))
+    }
+
+    {/* Filetti tra le righe, a tutta larghezza: sfumano agli estremi. */}
+    {
+      criteria.map((_, row) => (
+        <div class="cmp-rule" style={`--row: ${row + 2}`} aria-hidden="true" />
+      ))
+    }
+  </div>
+
+  <p class="cmp-close strong">
+    Costa quanto un software perché il lavoro pesante lo fa il tuo cervello digitale. Le persone
+    fanno l’intervista e controllano ogni post.
   </p>
 </section>
 
@@ -73,17 +138,43 @@ const included = [
     </div>
     <div class="offer-divider" aria-hidden="true"></div>
     <div class="offer-price-col">
-      <p class="offer-price">199 €<span class="per">/mese</span></p>
-      <p class="offer-first-month">Il primo mese: 99 €</p>
+      <span class="tag tag-accent offer-first-tag">Il primo mese: €99</span>
+      <p class="offer-price">€199<span class="per">/mese</span></p>
       {/* TODO: confermare la dicitura IVA (inclusa/esclusa) prima della pubblicazione. */}
-      <p class="offer-note">Nessun costo di setup. Disdici quando vuoi.</p>
-      <p class="offer-note">
-        Soddisfatti o rimborsati: hai 10 giorni dalla consegna dei primi post, senza domande.
-      </p>
-      <p class="offer-availability">
-        <span class="dot" aria-hidden="true"></span>5 posti disponibili per settembre
-      </p>
-      <WhatsAppCta />
+      <ul class="offer-guarantees">
+        {
+          guarantees.map((item) => (
+            <li>
+              <svg
+                class="offer-check"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 8.5l3.2 3.2L13 4.8"
+                  stroke="var(--color-accent-300)"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+      {
+        availability && (
+          <p class="offer-availability">
+            <span class="pulse-dot" aria-hidden="true" />
+            {availability}
+          </p>
+        )
+      }
+      <WhatsAppCta class="cta-block" />
     </div>
   </div>
 </section>

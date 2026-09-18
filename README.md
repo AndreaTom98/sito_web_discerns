@@ -28,10 +28,12 @@ Sono i valori che nel prototipo erano props ancora vuote, marcati `TODO`:
 | --- | --- |
 | `whatsappNumber` | Numero WhatsApp in formato internazionale |
 | `linkedinUrl` | Profilo LinkedIn di Andrea Tomasello |
-| `linkedinPostUrl` | URL del post mostrato nella sezione "Esempio" |
+| `linkedinPostUrl` | URL del post mostrato nella sezione "Come funziona" |
 | `companyLine` | Ragione sociale · P.IVA · sede, per il footer |
 | `privacyUrl` / `termsUrl` | Link legali |
 | `founderPortrait` | Ritratto di Andrea (mettere il file in `public/assets/`) |
+| `availabilityLine` | Disponibilità nella fascia prezzo, oggi "5 posti disponibili per settembre". Va tenuta vera; stringa vuota la nasconde |
+| `ogImage` | Immagine di anteprima dei link condivisi, es. `/assets/og-discerns.png` (1200×630). Vuota = nessun tag `og:image` |
 
 Finché restano vuoti **il sito funziona lo stesso**: i CTA WhatsApp e i link
 non configurati puntano all'ancora `#contatto`, come già previsto dal
@@ -42,7 +44,7 @@ Altri due punti aperti ereditati dal prototipo:
 - **Trascrizione dell'intervista** (`src/data/interview.ts`) — nel prototipo
   era marcata provvisoria. Va sostituita con la trascrizione reale. I
   passaggi con `highlight: true` sono quelli evidenziati in pagina.
-- **Dicitura IVA** — nella sezione prezzo va confermato se i 199 € sono IVA
+- **Dicitura IVA** — nella sezione prezzo va confermato se i €199 sono IVA
   inclusa o esclusa (vedi TODO in `src/components/Offer.astro`).
 
 ## Struttura
@@ -72,14 +74,17 @@ variabili (`var(--color-*)`, `var(--font-*)`, `var(--radius-*)`,
 `var(--shadow-*)`), mai come valori scritti a mano. La guida completa è in
 `src/styles/nocturne.readme.md`.
 
-Tre convenzioni che la pagina rispetta e che vale la pena non rompere:
+Convenzioni che la pagina rispetta e che vale la pena non rompere:
 
 - I filetti orizzontali **sfumano agli estremi** (classi `.rule` / `.rule-top`).
   Le marche corte d'accento, invece, restano piene.
 - Il pulsante primario è **pieno** (`.btn-solid`): deviazione deliberata dal
   contorno di Nocturne, chiesta per dare più stacco alle CTA.
-- Le uniche aree accentate sono la fascia dell'offerta (`--color-section`) e
-  il riquadro del cervello digitale (tinta dalla rampa scura dell'accento).
+- Le uniche aree accentate sono la fascia dell'offerta (`--color-section`),
+  la colonna Discerns del confronto (stessa tinta, per legarla al prezzo che
+  la segue) e il riquadro del cervello digitale (rampa scura dell'accento).
+- Prezzi con l'euro davanti e senza spazio (`€199/mese`), e niente trattini
+  lunghi nei testi visibili: si usano virgola, punto o "·".
 
 ## Accessibilità e comportamento senza JavaScript
 

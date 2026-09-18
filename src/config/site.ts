@@ -15,7 +15,7 @@ export interface SiteConfig {
   whatsappMessage: string;
   /** URL del profilo LinkedIn di Andrea Tomasello. */
   linkedinUrl: string;
-  /** URL del singolo post LinkedIn mostrato nella sezione "Esempio". */
+  /** URL del singolo post LinkedIn mostrato nella sezione "Come funziona". */
   linkedinPostUrl: string;
   /** Riga dati aziendali nel footer: ragione sociale, P.IVA, sede. */
   companyLine: string;
@@ -23,12 +23,19 @@ export interface SiteConfig {
   privacyUrl: string;
   /** Link ai termini di servizio. */
   termsUrl: string;
-  /** Ritratto di Andrea nella sezione "Esempio".
+  /** Ritratto di Andrea nella sezione "Come funziona".
    *  Metti il file in public/assets/ e indica qui il percorso, es.
    *  "/assets/ritratto-andrea.jpg". Vuoto = segnaposto. */
   founderPortrait: string;
   /** Testo alternativo del ritratto. */
   founderPortraitAlt: string;
+  /** Disponibilità mostrata nella fascia prezzo, come pill con puntino.
+   *  Stringa vuota = la riga non compare. Deve essere un dato reale. */
+  availabilityLine: string;
+  /** Immagine di anteprima per i link condivisi (og:image e twitter:image).
+   *  Percorso sotto /assets/, es. "/assets/og-discerns.png" (1200×630).
+   *  Stringa vuota = nessun tag emesso. */
+  ogImage: string;
 }
 
 export const site: SiteConfig = {
@@ -41,11 +48,13 @@ export const site: SiteConfig = {
   termsUrl: '', // TODO: termini di servizio
   founderPortrait: '', // TODO: ritratto di Andrea
   founderPortraitAlt: 'Ritratto di Andrea Tomasello, founder di Discerns',
+  availabilityLine: '5 posti disponibili per settembre',
+  ogImage: '', // TODO: immagine di anteprima, la fornisce Andrea
 };
 
 /** Metadati per <head>. */
 export const meta = {
-  title: 'Discerns — Un’ora di intervista al mese. Il tuo LinkedIn attivo, ogni settimana.',
+  title: 'Discerns · Un’ora di intervista al mese. Il tuo LinkedIn attivo, ogni settimana.',
   description:
     'Ti facciamo le domande giuste per far emergere quello che sai. Lo trasformiamo in 3 post a settimana su LinkedIn, con la tua voce, le tue esperienze e i tuoi punti di vista.',
   locale: 'it_IT',

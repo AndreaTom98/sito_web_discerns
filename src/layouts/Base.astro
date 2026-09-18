@@ -1,5 +1,5 @@
 ---
-import { meta } from '~/config/site';
+import { meta, site } from '~/config/site';
 import '~/styles/nocturne.css';
 import '~/styles/page.css';
 
@@ -10,6 +10,8 @@ interface Props {
 
 const { title = meta.title, description = meta.description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// Le piattaforme di condivisione vogliono un URL assoluto per l'immagine.
+const ogImage = site.ogImage.trim() ? new URL(site.ogImage.trim(), Astro.site) : null;
 ---
 
 <!doctype html>
@@ -27,6 +29,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary_large_image" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
 
     <meta name="theme-color" content="#161826" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

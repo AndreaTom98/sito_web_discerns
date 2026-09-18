@@ -25,7 +25,7 @@ export interface InterviewLine {
 
 export const interview: InterviewLine[] = [
   {
-    speaker: 'Discerns',
+    speaker: 'Intervistatore',
     interviewer: true,
     fragments: [
       { text: 'Usi Claude da mesi. Perché ci hai messo tanto a lasciare ChatGPT del tutto?' },
@@ -45,7 +45,7 @@ export const interview: InterviewLine[] = [
     ],
   },
   {
-    speaker: 'Discerns',
+    speaker: 'Intervistatore',
     interviewer: true,
     fragments: [{ text: 'E cosa è cambiato?' }],
   },
@@ -58,7 +58,7 @@ export const interview: InterviewLine[] = [
     ],
   },
   {
-    speaker: 'Discerns',
+    speaker: 'Intervistatore',
     interviewer: true,
     fragments: [
       { text: 'Perché per te è una cosa da raccontare e non solo una funzione in più?' },
