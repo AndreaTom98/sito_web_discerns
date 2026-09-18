@@ -11,7 +11,6 @@ const criteria = [
   'Il tuo tempo',
   'Quanto costa',
   'Suona come te?',
-  'Quanto dura',
   'Cosa resta tuo se smetti',
 ];
 
@@ -30,7 +29,6 @@ const alternatives: { name: string; us?: boolean; values: Cell[] }[] = [
       { text: '0 ore' },
       { text: '€0' },
       { text: 'Non parli', mark: 'no' },
-      { text: 'Non inizia', mark: 'no' },
       { text: 'Niente', mark: 'no' },
     ],
   },
@@ -40,7 +38,6 @@ const alternatives: { name: string; us?: boolean; values: Cell[] }[] = [
       { text: '≈ 4 ore a settimana' },
       { text: '€20/mese' },
       { text: 'Approssimativo' },
-      { text: '≈ 3 settimane' },
       { text: 'Bozze' },
     ],
   },
@@ -50,7 +47,6 @@ const alternatives: { name: string; us?: boolean; values: Cell[] }[] = [
       { text: 'Brief e revisioni' },
       { text: '€500‑2.000/mese' }, // trattino non separabile
       { text: 'Dopo mesi di brief' },
-      { text: 'Finché paghi' },
       { text: 'Niente', mark: 'no' },
     ],
   },
@@ -61,7 +57,6 @@ const alternatives: { name: string; us?: boolean; values: Cell[] }[] = [
       { text: '1 ora al mese' },
       { text: '€199/mese' },
       { text: 'Dall’intervista', mark: 'yes' },
-      { text: 'Ogni settimana', mark: 'yes' },
       { text: 'Il cervello digitale', mark: 'yes' },
     ],
   },
@@ -134,11 +129,6 @@ const availability = site.availabilityLine.trim();
       ))
     }
   </div>
-
-  <p class="cmp-close strong">
-    Costa quanto un software perché il lavoro pesante lo fa il tuo cervello digitale. Le persone
-    fanno l’intervista e controllano ogni post.
-  </p>
 </section>
 
 <section class="offer-band" aria-label="Offerta">

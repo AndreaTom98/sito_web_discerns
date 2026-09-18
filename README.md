@@ -24,16 +24,16 @@ npm run preview  # anteprima della build
 Tutti i dati mancanti stanno in un unico file: **`src/config/site.ts`**.
 Sono i valori che nel prototipo erano props ancora vuote, marcati `TODO`:
 
-| Campo | Cosa serve |
+| Campo | Stato |
 | --- | --- |
-| `whatsappNumber` | Numero WhatsApp in formato internazionale |
-| `linkedinUrl` | Profilo LinkedIn di Andrea Tomasello |
-| `linkedinPostUrl` | URL del post mostrato nella sezione "Come funziona" |
-| `companyLine` | Ragione sociale · P.IVA · sede, per il footer |
-| `privacyUrl` / `termsUrl` | Link legali |
-| `founderPortrait` | Ritratto di Andrea (mettere il file in `public/assets/`) |
-| `availabilityLine` | Disponibilità nella fascia prezzo, oggi "5 posti disponibili per settembre". Va tenuta vera; stringa vuota la nasconde |
-| `ogImage` | Immagine di anteprima dei link condivisi, es. `/assets/og-discerns.png` (1200×630). Vuota = nessun tag `og:image` |
+| `whatsappNumber` | **Da compilare**: numero WhatsApp in formato internazionale |
+| `linkedinPostUrl` | **Da compilare**: URL del post mostrato nella sezione "Come funziona" |
+| `ogImage` | **Da compilare**: immagine di anteprima dei link, es. `/assets/og-discerns.png` (1200×630). Vuota = nessun tag `og:image` |
+| `availabilityLine` | Compilato ("5 posti disponibili per settembre"): va tenuto vero, stringa vuota lo nasconde |
+| `linkedinUrl` | Compilato: profilo di Andrea |
+| `founderPortrait` | Compilato: `public/assets/andrea-tomasello.jpg` |
+| `companyName`, `vatNumber`, `companyAddress`, `contactEmail` | Compilati: dati aziendali del footer |
+| `termsUrl`, `privacyUrl`, `cookieUrl` | Compilati: link legali del footer (Iubenda e app) |
 
 Finché restano vuoti **il sito funziona lo stesso**: i CTA WhatsApp e i link
 non configurati puntano all'ancora `#contatto`, come già previsto dal

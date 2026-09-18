@@ -17,12 +17,15 @@ export interface SiteConfig {
   linkedinUrl: string;
   /** URL del singolo post LinkedIn mostrato nella sezione "Come funziona". */
   linkedinPostUrl: string;
-  /** Riga dati aziendali nel footer: ragione sociale, P.IVA, sede. */
-  companyLine: string;
-  /** Link all'informativa privacy. */
-  privacyUrl: string;
-  /** Link ai termini di servizio. */
+  /** Dati aziendali mostrati nel footer. */
+  companyName: string;
+  vatNumber: string;
+  companyAddress: string;
+  contactEmail: string;
+  /** Link legali del footer. */
   termsUrl: string;
+  privacyUrl: string;
+  cookieUrl: string;
   /** Ritratto di Andrea nella sezione "Come funziona".
    *  Metti il file in public/assets/ e indica qui il percorso, es.
    *  "/assets/ritratto-andrea.jpg". Vuoto = segnaposto. */
@@ -41,12 +44,16 @@ export interface SiteConfig {
 export const site: SiteConfig = {
   whatsappNumber: '', // TODO: numero WhatsApp
   whatsappMessage: 'Ciao Andrea, mi interessa Discerns per il mio LinkedIn.',
-  linkedinUrl: '', // TODO: profilo LinkedIn di Andrea
+  linkedinUrl: 'https://www.linkedin.com/in/andrea-tomasello/',
   linkedinPostUrl: '', // TODO: URL del post sulla memoria ChatGPT → Claude
-  companyLine: '', // TODO: ragione sociale · P.IVA · sede
-  privacyUrl: '', // TODO: informativa privacy
-  termsUrl: '', // TODO: termini di servizio
-  founderPortrait: '', // TODO: ritratto di Andrea
+  companyName: 'Discerns S.R.L.',
+  vatNumber: '07129080821',
+  companyAddress: 'Via Principe di Villafranca 50, 90141 Palermo (PA)',
+  contactEmail: 'info@discerns.ai',
+  termsUrl: 'https://app.discerns.ai/links/terms',
+  privacyUrl: 'https://www.iubenda.com/privacy-policy/39451382',
+  cookieUrl: 'https://www.iubenda.com/privacy-policy/39451382/cookie-policy',
+  founderPortrait: '/assets/andrea-tomasello.jpg',
   founderPortraitAlt: 'Ritratto di Andrea Tomasello, founder di Discerns',
   availabilityLine: '5 posti disponibili per settembre',
   ogImage: '', // TODO: immagine di anteprima, la fornisce Andrea
