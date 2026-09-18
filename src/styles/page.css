@@ -661,7 +661,7 @@ button:focus-visible {
 
 /* Confronto tra le quattro strade.
    Base, mobile e tablet: un blocco per alternativa con le sue cinque righe
-   etichetta/valore, uno o due per riga a seconda dello spazio. Da 961px, se
+   etichetta/valore, uno o due per riga a seconda dello spazio. Da 761px, se
    il browser supporta subgrid, gli stessi blocchi diventano colonne allineate
    riga per riga con le etichette a sinistra. Nessun JavaScript. */
 .cmp {
@@ -738,6 +738,25 @@ button:focus-visible {
   color: color-mix(in srgb, var(--color-text) 70%, transparent);
 }
 
+.cmp dd.has-mark {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cmp-mark {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.cmp-mark--yes {
+  color: var(--color-accent-300);
+}
+
+.cmp-mark--no {
+  color: var(--color-neutral-500);
+}
+
 .cmp-alt--us dd {
   color: var(--color-text);
 }
@@ -750,7 +769,7 @@ button:focus-visible {
 }
 
 @supports (grid-template-rows: subgrid) {
-  @media (min-width: 961px) {
+  @media (min-width: 761px) {
     .cmp {
       grid-template-columns: minmax(150px, 0.85fr) repeat(4, minmax(0, 1fr));
       grid-template-rows: auto repeat(5, auto);

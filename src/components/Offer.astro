@@ -8,53 +8,61 @@ import { site } from '~/config/site';
 // blocchi si impilano senza trucchi. Su desktop gli stessi blocchi diventano
 // colonne allineate riga per riga con CSS subgrid, senza JavaScript.
 const criteria = [
-  'Il tuo tempo, ogni mese',
+  'Il tuo tempo',
   'Quanto costa',
   'Suona come te?',
   'Quanto dura',
   'Cosa resta tuo se smetti',
 ];
 
-const alternatives = [
+// Celle brevi: un numero, un range o poche parole. Il segno è decorativo,
+// il testo dice già tutto (uno screen reader non deve leggerlo due volte).
+type Mark = 'yes' | 'no';
+interface Cell {
+  text: string;
+  mark?: Mark;
+}
+
+const alternatives: { name: string; us?: boolean; values: Cell[] }[] = [
   {
     name: 'Non fare nulla',
     values: [
-      'Zero',
-      'Niente. Ma il profilo è fermo, e le opportunità vanno a chi è visibile',
-      'Non parli',
-      'Nessuna costanza',
-      'Niente',
+      { text: '0 ore' },
+      { text: '€0' },
+      { text: 'Non parli', mark: 'no' },
+      { text: 'Non inizia', mark: 'no' },
+      { text: 'Niente', mark: 'no' },
     ],
   },
   {
     name: 'Fai da te con ChatGPT',
     values: [
-      'Ore ogni settimana: trovare argomenti, scrivere, rivedere, pubblicare',
-      'Il tuo tempo',
-      'Se gli dici solo che mestiere fai, scrive il post medio del tuo settore',
-      'Le prime tre settimane',
-      'Una cartella di bozze',
+      { text: '≈ 4 ore a settimana' },
+      { text: '€20/mese' },
+      { text: 'Approssimativo' },
+      { text: '≈ 3 settimane' },
+      { text: 'Bozze' },
     ],
   },
   {
     name: 'Agenzia o ghostwriter',
     values: [
-      'Call, brief e revisioni',
-      'Spesso oltre €1.000 al mese',
-      'Dopo mesi di brief',
-      'Finché paghi',
-      'Niente',
+      { text: 'Brief e revisioni' },
+      { text: '€500‑2.000/mese' }, // trattino non separabile
+      { text: 'Dopo mesi di brief' },
+      { text: 'Finché paghi' },
+      { text: 'Niente', mark: 'no' },
     ],
   },
   {
     name: 'Discerns',
     us: true,
     values: [
-      'Un’ora di intervista',
-      '€199 al mese',
-      'Dall’intervista: le tue parole, i tuoi esempi, i tuoi punti di vista',
-      'Tre post a settimana, ogni settimana',
-      'Il tuo cervello digitale',
+      { text: '1 ora al mese' },
+      { text: '€199/mese' },
+      { text: 'Dall’intervista', mark: 'yes' },
+      { text: 'Ogni settimana', mark: 'yes' },
+      { text: 'Il cervello digitale', mark: 'yes' },
     ],
   },
 ];
@@ -99,7 +107,19 @@ const availability = site.availabilityLine.trim();
             {criteria.map((criterion, row) => (
               <div class="cmp-row">
                 <dt>{criterion}</dt>
-                <dd>{alt.values[row]}</dd>
+                <dd class:list={[alt.values[row].mark && 'has-mark']}>
+                  {alt.values[row].mark === 'yes' && (
+                    <svg class="cmp-mark cmp-mark--yes" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path d="M2.5 7.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  )}
+                  {alt.values[row].mark === 'no' && (
+                    <svg class="cmp-mark cmp-mark--no" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                    </svg>
+                  )}
+                  <span>{alt.values[row].text}</span>
+                </dd>
               </div>
             ))}
           </dl>
