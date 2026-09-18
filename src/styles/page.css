@@ -260,8 +260,9 @@ button:focus-visible {
     position: sticky;
     top: 0;
     background: color-mix(in srgb, var(--color-bg) 80%, transparent);
-    backdrop-filter: blur(14px) saturate(1.2);
+    /* Prefisso prima dello standard: i minificatori tengono l'ultima. */
     -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    backdrop-filter: blur(14px) saturate(1.2);
   }
 
   .site-header::after {
