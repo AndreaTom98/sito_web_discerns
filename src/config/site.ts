@@ -46,7 +46,7 @@ export interface SiteConfig {
 }
 
 export const site: SiteConfig = {
-  linkedinPostUrl: '', // TODO: URL del post sulla memoria ChatGPT → Claude
+  linkedinPostUrl: 'https://www.linkedin.com/posts/andrea-tomasello_lunico-motivo-per-cui-usavo-ancora-chatgpt-activity-7433836020573552640-08JT',
   companyName: 'Discerns S.R.L.',
   vatNumber: '07129080821',
   companyAddress: 'Via Principe di Villafranca 50, 90141 Palermo (PA)',

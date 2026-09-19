@@ -27,7 +27,7 @@ Sono i valori che nel prototipo erano props ancora vuote, marcati `TODO`:
 | Campo | Stato |
 | --- | --- |
 | `WHATSAPP_NUMBER`, `WHATSAPP_MESSAGE`, `WHATSAPP_URL` | Compilati: il link di tutti i bottoni WhatsApp, in un solo punto |
-| `linkedinPostUrl` | **Da compilare**: URL del post mostrato nella sezione "L’intervista" |
+| `linkedinPostUrl` | Compilato: il post LinkedIn mostrato nella sezione dell’intervista |
 | `ogImage` | **Da compilare**: immagine di anteprima dei link, es. `/assets/og-discerns.png` (1200×630). Vuota = nessun tag `og:image` |
 | `availabilityLine` | Compilato ("5 posti disponibili per settembre"): va tenuto vero, stringa vuota lo nasconde |
 | `founderPortrait` | Compilato: `public/assets/andrea-tomasello.jpg` |

@@ -5,6 +5,8 @@ import { interview } from '~/data/interview';
 // Link non ancora configurati: fallback sull'ancora #contatto. Nessun link
 // morto in pagina, un solo punto da compilare.
 const postHref = linkOr(site.linkedinPostUrl);
+// Il post è su LinkedIn: si apre in una nuova scheda, il fallback interno no.
+const postExternal = postHref.startsWith('http');
 ---
 
 <section id="intervista" class="wrap section" aria-label="L’intervista">
@@ -62,7 +64,12 @@ const postHref = linkOr(site.linkedinPostUrl);
         loading="lazy"
         decoding="async"
       />
-      <a class="link-accent" href={postHref}>Vedi il post su LinkedIn</a>
+      <a
+        class="link-accent"
+        href={postHref}
+        target={postExternal ? '_blank' : undefined}
+        rel={postExternal ? 'noopener noreferrer' : undefined}>Vedi il post su LinkedIn</a
+      >
     </div>
   </div>
 
