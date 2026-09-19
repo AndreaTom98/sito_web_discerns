@@ -774,11 +774,6 @@ button:focus-visible {
   color: color-mix(in srgb, var(--color-text) 76%, transparent);
 }
 
-.founder-link {
-  align-self: flex-start;
-  padding: 6px 0 0;
-}
-
 /* ── 4. Come funziona ────────────────────────────────────────────────── */
 
 .how {

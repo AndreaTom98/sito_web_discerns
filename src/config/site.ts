@@ -16,11 +16,9 @@ export const WHATSAPP_NUMBER = '393298373051';
 export const WHATSAPP_MESSAGE = 'Ciao, mi interessa Discerns per il mio LinkedIn.';
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 /** Testo (e nome accessibile) di tutti i bottoni WhatsApp. */
-export const WHATSAPP_LABEL = 'Scrivici su WhatsApp';
+export const WHATSAPP_LABEL = 'Scrivici su WhatsApp per iniziare';
 
 export interface SiteConfig {
-  /** URL del profilo LinkedIn di Andrea Tomasello. */
-  linkedinUrl: string;
   /** URL del singolo post LinkedIn mostrato nella sezione "L’intervista". */
   linkedinPostUrl: string;
   /** Dati aziendali mostrati nel footer. */
@@ -48,7 +46,6 @@ export interface SiteConfig {
 }
 
 export const site: SiteConfig = {
-  linkedinUrl: 'https://www.linkedin.com/in/andrea-tomasello/',
   linkedinPostUrl: '', // TODO: URL del post sulla memoria ChatGPT → Claude
   companyName: 'Discerns S.R.L.',
   vatNumber: '07129080821',

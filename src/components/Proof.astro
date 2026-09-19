@@ -5,16 +5,13 @@ import { interview } from '~/data/interview';
 // Link non ancora configurati: fallback sull'ancora #contatto. Nessun link
 // morto in pagina, un solo punto da compilare.
 const postHref = linkOr(site.linkedinPostUrl);
-const profileHref = linkOr(site.linkedinUrl);
-// Un fallback interno non deve aprire una scheda nuova.
-const profileTarget = site.linkedinUrl ? '_blank' : '_self';
 ---
 
 <section id="intervista" class="wrap section" aria-label="L’intervista">
   <div class="section-head">
-    <h2 class="section-title">Ecco come funziona.</h2>
+    <h2 class="section-title">Un esempio dell’intervista</h2>
     <p class="section-sub">
-      Da un’intervista con Andrea Tomasello, founder di Discerns, a un post pubblicato sul suo
+      Da una chiacchierata con Andrea Tomasello, founder di Discerns, a un post pubblicato sul suo
       profilo LinkedIn.
     </p>
   </div>
@@ -99,9 +96,6 @@ const profileTarget = site.linkedinUrl ? '_blank' : '_self';
           Il post che hai appena visto è nato dal lavoro che facciamo anche sul suo profilo:
           intervista, preparazione dei contenuti e approvazione.
         </p>
-        <a class="link-accent founder-link" href={profileHref} target={profileTarget} rel="noopener">
-          Guarda altri post di Andrea
-        </a>
       </div>
     </div>
   </div>
