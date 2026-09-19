@@ -1,18 +1,24 @@
 /**
  * Configurazione del sito — unico punto in cui inserire i dati reali.
  *
- * Tutti i valori marcati TODO vengono dal prototipo Claude Design, dove erano
- * props ancora da compilare. Finché restano vuoti il sito funziona comunque:
- * i CTA WhatsApp fanno fallback sull'ancora #contatto, esattamente come
- * previsto nel prototipo.
+ * I valori marcati TODO sono ancora da compilare. Finché restano vuoti il
+ * sito funziona comunque: i link non configurati puntano all'ancora
+ * #contatto invece di portare a una pagina vuota.
  */
 
+/**
+ * WhatsApp: l'unica fonte del link usato da tutti i bottoni della pagina
+ * (header, hero, offerta, chiusura). Formato wa.me: su mobile apre l'app,
+ * su desktop la pagina che fa scegliere tra app e WhatsApp Web, sempre con
+ * il messaggio già scritto.
+ */
+export const WHATSAPP_NUMBER = '393298373051';
+export const WHATSAPP_MESSAGE = 'Ciao, mi interessa Discerns per il mio LinkedIn.';
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+/** Testo (e nome accessibile) di tutti i bottoni WhatsApp. */
+export const WHATSAPP_LABEL = 'Scrivici su WhatsApp';
+
 export interface SiteConfig {
-  /** Numero WhatsApp in formato internazionale, es. "+39 333 1234567".
-   *  I caratteri non numerici vengono rimossi automaticamente. */
-  whatsappNumber: string;
-  /** Messaggio precompilato nella chat WhatsApp. */
-  whatsappMessage: string;
   /** URL del profilo LinkedIn di Andrea Tomasello. */
   linkedinUrl: string;
   /** URL del singolo post LinkedIn mostrato nella sezione "L’intervista". */
@@ -42,8 +48,6 @@ export interface SiteConfig {
 }
 
 export const site: SiteConfig = {
-  whatsappNumber: '', // TODO: numero WhatsApp
-  whatsappMessage: 'Ciao Andrea, mi interessa Discerns per il mio LinkedIn.',
   linkedinUrl: 'https://www.linkedin.com/in/andrea-tomasello/',
   linkedinPostUrl: '', // TODO: URL del post sulla memoria ChatGPT → Claude
   companyName: 'Discerns S.R.L.',
@@ -71,24 +75,6 @@ export const meta = {
   locale: 'it_IT',
   lang: 'it',
 } as const;
-
-/**
- * Costruisce il link WhatsApp.
- * Senza numero configurato, il CTA punta all'ancora #contatto nella stessa
- * scheda — così il bottone resta utile invece di rompersi.
- */
-export function whatsappLink(config: SiteConfig = site): {
-  href: string;
-  target: '_self' | '_blank';
-  configured: boolean;
-} {
-  const digits = (config.whatsappNumber ?? '').replace(/\D/g, '');
-  if (!digits) {
-    return { href: '#contatto', target: '_self', configured: false };
-  }
-  const text = encodeURIComponent(config.whatsappMessage);
-  return { href: `https://wa.me/${digits}?text=${text}`, target: '_blank', configured: true };
-}
 
 /** Href con fallback: un link non configurato non deve portare a "#". */
 export function linkOr(url: string, fallback = '#contatto'): string {

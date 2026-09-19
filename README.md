@@ -26,7 +26,7 @@ Sono i valori che nel prototipo erano props ancora vuote, marcati `TODO`:
 
 | Campo | Stato |
 | --- | --- |
-| `whatsappNumber` | **Da compilare**: numero WhatsApp in formato internazionale |
+| `WHATSAPP_NUMBER`, `WHATSAPP_MESSAGE`, `WHATSAPP_URL` | Compilati: il link di tutti i bottoni WhatsApp, in un solo punto |
 | `linkedinPostUrl` | **Da compilare**: URL del post mostrato nella sezione "L’intervista" |
 | `ogImage` | **Da compilare**: immagine di anteprima dei link, es. `/assets/og-discerns.png` (1200×630). Vuota = nessun tag `og:image` |
 | `availabilityLine` | Compilato ("5 posti disponibili per settembre"): va tenuto vero, stringa vuota lo nasconde |
@@ -35,9 +35,8 @@ Sono i valori che nel prototipo erano props ancora vuote, marcati `TODO`:
 | `companyName`, `vatNumber`, `companyAddress`, `contactEmail` | Compilati: dati aziendali del footer |
 | `termsUrl`, `privacyUrl`, `cookieUrl` | Compilati: link legali del footer (Iubenda e app) |
 
-Finché restano vuoti **il sito funziona lo stesso**: i CTA WhatsApp e i link
-non configurati puntano all'ancora `#contatto`, come già previsto dal
-prototipo. Nessun link morto in pagina.
+Finché restano vuoti **il sito funziona lo stesso**: i link non configurati
+puntano all'ancora `#contatto`. Nessun link morto in pagina.
 
 Altri punti:
 

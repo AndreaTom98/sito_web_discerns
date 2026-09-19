@@ -2,8 +2,8 @@
 import { site, linkOr } from '~/config/site';
 import { interview } from '~/data/interview';
 
-// Link non ancora configurati: fallback sull'ancora #contatto, come per il
-// CTA WhatsApp. Nessun link morto in pagina, un solo punto da compilare.
+// Link non ancora configurati: fallback sull'ancora #contatto. Nessun link
+// morto in pagina, un solo punto da compilare.
 const postHref = linkOr(site.linkedinPostUrl);
 const profileHref = linkOr(site.linkedinUrl);
 // Un fallback interno non deve aprire una scheda nuova.
