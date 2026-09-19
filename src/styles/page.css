@@ -462,6 +462,19 @@ button:focus-visible {
   flex: 0 0 auto;
 }
 
+/* Su telefoni stretti "Scrivici su WhatsApp per iniziare" deve restare su
+   una riga, nel hero e nella fascia prezzo: meno padding e un punto in meno bastano fino a 375px. */
+@media (max-width: 420px) {
+  .hero .cta-hero {
+    padding: 0 18px;
+    font-size: 16px;
+  }
+
+  .offer-price-col .cta-block {
+    padding: 0 16px;
+  }
+}
+
 .hero-terms {
   margin: 16px 0 0;
   font-size: 15px;
